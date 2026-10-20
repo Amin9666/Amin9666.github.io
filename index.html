@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#173f86">
+<meta name="description" content="Amin Weinman: software engineer and AI researcher. CS + Math at New Mexico Tech ('27). Experience at Sandia National Labs, Metrical.al and DREU.">
+<meta property="og:title" content="Amin Weinman · Software Engineer & AI Researcher">
+<meta property="og:description" content="Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech ('27).">
+<meta property="og:type" content="website">
+<title>Amin Weinman · Arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="hud">
+    <div class="player">
+      <div class="lvl-badge"><span id="hud-level"></span></div>
+      <div class="player-info">
+        <div class="player-name" id="hud-name"></div>
+        <div class="xp-bar"><div class="xp-fill" id="hud-xp"></div><span id="hud-xp-text"></span></div>
+      </div>
+    </div>
+    <div class="resources">
+      <div class="res"><span class="res-icon">🪙</span><span id="hud-gold"></span></div>
+      <div class="res"><span class="res-icon">💎</span><span id="hud-gems"></span></div>
+    </div>
+  </header>
+
+  <main class="screens" id="screens">
+    <div class="track" id="track">
+
+      <section class="screen" aria-label="Projects">
+        <div class="shop-head">
+          <h2>Shop</h2>
+          <span class="timer">New deals in <b id="refresh-timer"></b></span>
+        </div>
+        <div id="special-offer"></div>
+        <h3 class="section-title">Daily Deals</h3>
+        <div class="deals" id="deals"></div>
+      </section>
+
+      <section class="screen" aria-label="Skills">
+        <div class="panel">
+          <div class="panel-head"><h2>Battle Deck</h2><span class="hint">Tap a card</span></div>
+          <div class="card-grid" id="deck-grid"></div>
+          <div class="deck-foot"><span class="elixir static"><span>⌀</span></span>Average Elixir: <b id="avg-elixir"></b></div>
+        </div>
+        <h3 class="section-title">Card Collection</h3>
+        <p class="sub-count" id="collection-count"></p>
+        <div class="card-grid" id="collection-grid"></div>
+      </section>
+
+      <section class="screen" aria-label="Home">
+        <div class="arena-top">
+          <span class="pill"><span>🏆</span><span id="trophy-count"></span></span>
+          <span class="pill"><span>📍</span><span id="location"></span></span>
+        </div>
+        <div class="arena">
+          <div class="cloud c1"></div>
+          <div class="cloud c2"></div>
+          <div class="arena-name" id="arena-name"></div>
+          <span class="tree t1">🌳</span>
+          <span class="tree t2">🌲</span>
+          <svg class="tower" viewBox="0 0 200 210" aria-hidden="true">
+            <ellipse cx="100" cy="196" rx="84" ry="12" fill="rgba(0,0,0,.25)"/>
+            <path d="M30 196 L38 92 H162 L170 196 Z" fill="#c3ccd8" stroke="#0d1b33" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M36 122 H164 M34 150 H166 M32 178 H168 M70 92 V122 M120 92 V122 M95 122 V150 M60 150 V178 M140 150 V178" stroke="#8f9bb0" stroke-width="4"/>
+            <path d="M30 92 V66 H52 V78 H70 V66 H92 V78 H108 V66 H130 V78 H148 V66 H170 V92 Z" fill="#d6dee8" stroke="#0d1b33" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M48 100 H72 V146 L60 136 L48 146 Z" fill="#2f7be0" stroke="#0d1b33" stroke-width="4" stroke-linejoin="round"/>
+            <path d="M128 100 H152 V146 L140 136 L128 146 Z" fill="#2f7be0" stroke="#0d1b33" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="60" cy="116" r="5" fill="#ffd23f" stroke="#0d1b33" stroke-width="2"/>
+            <circle cx="140" cy="116" r="5" fill="#ffd23f" stroke="#0d1b33" stroke-width="2"/>
+            <path d="M80 196 V164 Q100 140 120 164 V196 Z" fill="#5b3a1f" stroke="#0d1b33" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M100 152 V196" stroke="#3d2612" stroke-width="3"/>
+            <g class="crown">
+              <path d="M62 60 L56 22 L78 40 L100 12 L122 40 L144 22 L138 60 Z" fill="#ffd23f" stroke="#0d1b33" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M66 50 H134" stroke="#e59a00" stroke-width="5"/>
+              <circle cx="100" cy="36" r="6" fill="#ff4d6d" stroke="#0d1b33" stroke-width="3"/>
+              <circle cx="56" cy="22" r="5" fill="#fff" stroke="#0d1b33" stroke-width="3"/>
+              <circle cx="100" cy="12" r="5" fill="#fff" stroke="#0d1b33" stroke-width="3"/>
+              <circle cx="144" cy="22" r="5" fill="#fff" stroke="#0d1b33" stroke-width="3"/>
+            </g>
+          </svg>
+          <div class="bubble" id="greeting"></div>
+        </div>
+
+        <div class="hero">
+          <h1 id="hero-name"></h1>
+          <div class="title" id="hero-title"></div>
+          <p id="hero-tagline"></p>
+        </div>
+
+        <button class="btn btn-yellow btn-battle" data-action="battle">Battle<small>Let's work together</small></button>
+        <div class="quick-links" id="quick-links"></div>
+
+        <h3 class="section-title">Chests</h3>
+        <div class="chest-slots" id="chest-slots"></div>
+      </section>
+
+      <section class="screen" aria-label="About">
+        <div class="panel" id="clan-head"></div>
+        <h3 class="section-title">Clan Chat</h3>
+        <div class="chat" id="chat"></div>
+        <h3 class="section-title">Members</h3>
+        <ol class="members" id="members"></ol>
+      </section>
+
+      <section class="screen" aria-label="Journey">
+        <div class="shop-head">
+          <h2>Trophy Road</h2>
+          <span class="timer">Career &amp; education</span>
+        </div>
+        <div class="road" id="road"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <nav class="tabbar" id="tabbar" role="tablist"></nav>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel" id="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head"><h2 id="modal-title"></h2><button class="x" data-close aria-label="Close">✕</button></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
