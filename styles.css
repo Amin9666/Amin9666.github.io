@@ -993,3 +993,5 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 .bubble { display: flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; top: 30%; }
 .bubble-emote { width: 52px; height: auto; flex: none; }
 .vs-avatar img { width: 64px; height: 64px; object-fit: contain; }
+.bubble { top: 25%; left: 50%; max-width: 70%; transform-origin: bottom center; translate: -50% 0; white-space: nowrap; }
+.bubble::after { left: 50%; bottom: -16px; margin-left: -8px; border-right-color: transparent; border-top-color: var(--ink); }

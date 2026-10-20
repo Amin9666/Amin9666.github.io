@@ -1,6 +1,5 @@
 const ARENA_W = 360;
 const ARENA_H = 480;
-const TEAM = { red: { main: "#e8433a" }, blue: { main: "#2f7be0" } };
 const TOWERS = {
   rk: { x: 180, y: 80, team: "red", king: true },
   rl: { x: 80, y: 145, team: "red" },
@@ -10,27 +9,10 @@ const TOWERS = {
   bk: { x: 180, y: 410, team: "blue", king: true },
 };
 function towerSVG(id, t) {
-  const c = TEAM[t.team].main;
-  const ink = `stroke="#0d1b33" stroke-linejoin="round"`;
-  const top = t.king
-    ? `<path d="M-14 -30 L-16 -48 L-7 -40 L0 -52 L7 -40 L16 -48 L14 -30 Z" fill="#ffd23f" ${ink} stroke-width="3"/>
-       <circle cx="0" cy="-38" r="3.2" fill="${c}" stroke="#0d1b33" stroke-width="1.5"/>`
-    : `<path d="M0 -28 V-48" stroke="#0d1b33" stroke-width="2.5"/>
-       <path d="M0 -48 L15 -43 L0 -38 Z" fill="${c}" ${ink} stroke-width="2"/>`;
+  const [src, w, h] = t.king ? ["king", 80, 80.6] : ["princess", 66, 72.7];
   return `<g data-tower="${id}" transform="translate(${t.x} ${t.y}) scale(${t.king ? 1.35 : 1})">
-    <ellipse cx="0" cy="24" rx="30" ry="8" fill="rgba(0,0,0,.28)"/>
-    <g class="tower-body">
-      <path d="M-24 22 L-21 -8 H21 L24 22 Z" fill="#c3ccd8" ${ink} stroke-width="3"/>
-      <path d="M-22 7 H22 M-8 -8 V7 M8 7 V22" stroke="#8f9bb0" stroke-width="2.5"/>
-      <rect x="-26" y="-22" width="52" height="16" rx="3" fill="#d6dee8" ${ink} stroke-width="3"/>
-      <rect x="-26" y="-29" width="10" height="8" fill="#d6dee8" ${ink} stroke-width="2.5"/>
-      <rect x="-5" y="-29" width="10" height="8" fill="#d6dee8" ${ink} stroke-width="2.5"/>
-      <rect x="16" y="-29" width="10" height="8" fill="#d6dee8" ${ink} stroke-width="2.5"/>
-      <path d="M-18 -4 h8 v14 l-4 -3 l-4 3 Z" fill="${c}" ${ink} stroke-width="2"/>
-      <path d="M10 -4 h8 v14 l-4 -3 l-4 3 Z" fill="${c}" ${ink} stroke-width="2"/>
-      <path d="M-7 22 V13 Q0 5 7 13 V22 Z" fill="#5b3a1f" ${ink} stroke-width="2.5"/>
-      ${top}
-    </g>
+    <ellipse cx="0" cy="24" rx="${w / 2 + 4}" ry="8" fill="rgba(0,0,0,.28)"/>
+    <image class="tower-body" href="assets/towers/${src}.webp" x="${-w / 2}" y="${26 - h}" width="${w}" height="${h}"/>
   </g>`;
 }
 
