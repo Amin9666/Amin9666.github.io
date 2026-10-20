@@ -44,7 +44,7 @@
   <main class="screens" id="screens">
     <div class="track" id="track">
 
-      <section class="screen" aria-label="Projects">
+      <section class="screen screen-shop" aria-label="Projects">
         <div class="shop-head">
           <h2>Shop</h2>
           <span class="timer">New deals in <b id="refresh-timer"></b></span>
@@ -54,7 +54,7 @@
         <div class="deals" id="deals"></div>
       </section>
 
-      <section class="screen" aria-label="Skills">
+      <section class="screen screen-deck" aria-label="Skills">
         <div class="panel">
           <div class="panel-head"><h2>Battle Deck</h2><span class="hint">Tap a card</span></div>
           <div class="card-grid" id="deck-grid"></div>
@@ -65,7 +65,8 @@
         <div class="card-grid" id="collection-grid"></div>
       </section>
 
-      <section class="screen" aria-label="Home">
+      <section class="screen screen-home" aria-label="Home">
+        <div class="home-main">
         <div class="arena-top">
           <span class="pill"><span>🏆</span><span id="trophy-count"></span></span>
           <span class="pill"><span>📍</span><span id="location"></span></span>
@@ -74,7 +75,9 @@
           <div class="arena-name" id="arena-name"></div>
           <div class="bubble" id="greeting"></div>
         </div>
+        </div>
 
+        <div class="home-side">
         <div class="hero">
           <h1 id="hero-name"></h1>
           <div class="title" id="hero-title"></div>
@@ -83,20 +86,25 @@
 
         <button class="btn btn-yellow btn-battle" data-action="battle">Battle<small>Let's work together</small></button>
         <div class="quick-links" id="quick-links"></div>
+        </div>
 
         <h3 class="section-title">Fun Fact Chests</h3>
         <div class="chest-slots" id="chest-slots"></div>
       </section>
 
-      <section class="screen" aria-label="About">
-        <div class="panel" id="clan-head"></div>
-        <h3 class="section-title">Clan Chat</h3>
-        <div class="chat" id="chat"></div>
-        <h3 class="section-title">Members</h3>
-        <ol class="members" id="members"></ol>
+      <section class="screen screen-clan" aria-label="About">
+        <div class="clan-a">
+          <div class="panel" id="clan-head"></div>
+          <h3 class="section-title members-title">Members</h3>
+          <ol class="members" id="members"></ol>
+        </div>
+        <div class="clan-b">
+          <h3 class="section-title chat-title">Clan Chat</h3>
+          <div class="chat" id="chat"></div>
+        </div>
       </section>
 
-      <section class="screen" aria-label="Journey">
+      <section class="screen screen-road" aria-label="Journey">
         <div class="shop-head">
           <h2>Trophy Road</h2>
           <span class="timer">Career &amp; education</span>
