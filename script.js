@@ -481,7 +481,7 @@ function startBattle() {
       <div class="vs">VS</div>
       <div class="vs-side red"><div class="vs-avatar"><img src="${PROFILE.emote}" alt=""></div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
     </div>
-    <p class="vs-msg">Best of one: send a message and let's build something.</p>
+    <p class="vs-msg">Best of one: loser buys dinner.</p>
     <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>
     <div class="btn-row">
       <a class="btn btn-yellow" href="mailto:${PROFILE.email}">✉️ Email</a>

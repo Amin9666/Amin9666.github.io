@@ -1021,3 +1021,6 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 .coach small { font-size: 12.5px; color: #bcd5fb; }
 .coach-hand { font-size: 28px; animation: swipe 1.2s ease-in-out infinite; }
 @keyframes swipe { 0%, 100% { transform: translateX(-8px) rotate(-10deg); } 50% { transform: translateX(8px) rotate(10deg); } }
+.tl { opacity: 1; transform: none; font-size: 12px; }
+.ti { transform: translateY(-8px); }
+.tab:not(.active) .tl { color: #cfe1ff; }
