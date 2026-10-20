@@ -14,21 +14,21 @@ const PROFILE = {
 };
 
 const DECK = [
-  { id: "py", name: "Python", icon: "🐍", cost: 3, rarity: "common", level: 14, type: "Troop", desc: "Main win condition. Powers the research pipelines, the agents and the backend algorithms.", stats: { "Used at": "Sandia · Metrical · DREU", Damage: "10x throughput", Range: "ML to backend", Targets: "Everything" } },
-  { id: "ml", name: "Machine Learning", icon: "🧠", cost: 5, rarity: "champion", level: 14, type: "Champion", desc: "Ability: feature engineering. Took promo-response targeting +0.135 AUC and benchmarked five model families on 8,974 acoustic-emission events.", stats: { Toolkit: "scikit-learn · TF", Damage: "+0.135 AUC", Models: "LR · SVR · RF · GB", Targets: "Signal" } },
-  { id: "safety", name: "AI Safety", icon: "🛡️", cost: 4, rarity: "legendary", level: 13, type: "Building", desc: "A 5-guardrail stack that took prompt-injection success from 100% to 0% across 480 adversarial test cases.", stats: { Guardrails: "5", "Injection Rate": "100% → 0%", Compliance: "22% → 100%", Targets: "Bad prompts" } },
-  { id: "dist", name: "Distributed Systems", icon: "🛰️", cost: 6, rarity: "epic", level: 12, type: "Building", desc: "Messaging systems and modular architectures that hold up at enterprise scale.", stats: { Reliability: "+40%", Latency: "−35%", Speed: "Sub-50ms", Targets: "Enterprise" } },
-  { id: "js", name: "JavaScript", icon: "⚡", cost: 2, rarity: "common", level: 13, type: "Spell", desc: "Fast cycle card for web interfaces and client-side harnesses.", stats: { "Used in": "Client Harness", Damage: "Full-stack", Speed: "Very Fast", Targets: "Browsers" } },
-  { id: "react", name: "React", icon: "⚛️", cost: 4, rarity: "epic", level: 12, type: "Troop", desc: "Led a jQuery → React/Vite migration simulating a full purchase funnel.", stats: { Build: "Vite SPA", Funnel: "Browse → Confirm", Envs: "Dev · Stage · Prod", Targets: "UIs" } },
-  { id: "pg", name: "PostgreSQL", icon: "🐘", cost: 5, rarity: "rare", level: 12, type: "Building", desc: "Heavy, durable storage that never forgets a row.", stats: { Partner: "SQL", Hitpoints: "Massive", Lifetime: "Forever", Targets: "Queries" } },
-  { id: "c", name: "C", icon: "🔧", cost: 2, rarity: "rare", level: 12, type: "Troop", desc: "Close to the metal. Pairs with computer architecture for raw throughput.", stats: { Course: "Comp. Architecture", Damage: "Raw", Speed: "Blazing", Targets: "Memory" } },
+  { id: "py", name: "Python", icon: "🐍", cost: 3, rarity: "legendary", art: "icewizard", level: 14, type: "Troop", desc: "Main win condition. Powers the research pipelines, the agents and the backend algorithms.", stats: { "Used at": "Sandia · Metrical · DREU", Damage: "10x throughput", Range: "ML to backend", Targets: "Everything" } },
+  { id: "ml", name: "Machine Learning", icon: "🧠", cost: 5, rarity: "champion", art: "electrowizard", level: 14, type: "Champion", desc: "Ability: feature engineering. Took promo-response targeting +0.135 AUC and benchmarked five model families on 8,974 acoustic-emission events.", stats: { Toolkit: "scikit-learn · TF", Damage: "+0.135 AUC", Models: "LR · SVR · RF · GB", Targets: "Signal" } },
+  { id: "safety", name: "AI Safety", icon: "🛡️", cost: 4, rarity: "legendary", art: "valkyrie", level: 13, type: "Building", desc: "A 5-guardrail stack that took prompt-injection success from 100% to 0% across 480 adversarial test cases.", stats: { Guardrails: "5", "Injection Rate": "100% → 0%", Compliance: "22% → 100%", Targets: "Bad prompts" } },
+  { id: "dist", name: "Distributed Systems", icon: "🛰️", cost: 6, rarity: "epic", art: "electrogiant", level: 12, type: "Building", desc: "Messaging systems and modular architectures that hold up at enterprise scale.", stats: { Reliability: "+40%", Latency: "−35%", Speed: "Sub-50ms", Targets: "Enterprise" } },
+  { id: "js", name: "JavaScript", icon: "⚡", cost: 2, rarity: "common", art: "ronin", level: 13, type: "Spell", desc: "Fast cycle card for web interfaces and client-side harnesses.", stats: { "Used in": "Client Harness", Damage: "Full-stack", Speed: "Very Fast", Targets: "Browsers" } },
+  { id: "react", name: "React", icon: "⚛️", cost: 4, rarity: "epic", art: "elitebarbs", level: 12, type: "Troop", desc: "Led a jQuery → React/Vite migration simulating a full purchase funnel.", stats: { Build: "Vite SPA", Funnel: "Browse → Confirm", Envs: "Dev · Stage · Prod", Targets: "UIs" } },
+  { id: "pg", name: "PostgreSQL", icon: "🐘", cost: 5, rarity: "legendary", art: "tombstone", level: 12, type: "Building", desc: "Heavy, durable storage that never forgets a row.", stats: { Partner: "SQL", Hitpoints: "Massive", Lifetime: "Forever", Targets: "Queries" } },
+  { id: "c", name: "C", icon: "🔧", cost: 2, rarity: "common", art: "bandit", level: 12, type: "Troop", desc: "Close to the metal. Pairs with computer architecture for raw throughput.", stats: { Course: "Comp. Architecture", Damage: "Raw", Speed: "Blazing", Targets: "Memory" } },
 ];
 
 const COLLECTION = [
   { id: "sql", name: "SQL", icon: "🗄️", cost: 2, rarity: "common", level: 13, type: "Spell", desc: "Asks the database exactly the right question.", stats: { Pairs: "PostgreSQL", Damage: "Joins", Speed: "Fast", Targets: "Tables" } },
   { id: "flask", name: "Flask", icon: "🧪", cost: 3, rarity: "rare", level: 12, type: "Troop", desc: "Lightweight Python web framework for APIs.", stats: { Builds: "REST APIs", Weight: "Light", Speed: "Fast", Targets: "Endpoints" } },
   { id: "docker", name: "Docker", icon: "🐳", cost: 5, rarity: "epic", level: 11, type: "Spell", desc: "Packs the whole army into a container and drops it anywhere.", stats: { Radius: "Any cloud", Repro: "100%", Speed: "Medium", Targets: "Deploys" } },
-  { id: "git", name: "Git", icon: "🌿", cost: 1, rarity: "common", level: 14, type: "Spell", desc: "Rewinds time. Also runs GitHub Actions pipelines that keep charts current on every push.", stats: { CI: "GitHub Actions", Branches: "Many", Speed: "Instant", Targets: "History" } },
+  { id: "git", name: "Git", icon: "🌿", cost: 1, rarity: "legendary", art: "berserker", level: 14, type: "Spell", desc: "Rewinds time. Also runs GitHub Actions pipelines that keep charts current on every push.", stats: { CI: "GitHub Actions", Branches: "Many", Speed: "Instant", Targets: "History" } },
   { id: "tf", name: "TensorFlow", icon: "🔶", cost: 6, rarity: "epic", level: 11, type: "Troop", desc: "Heavy-hitting deep learning framework.", stats: { Type: "Deep learning", Damage: "High", Speed: "GPU-bound", Targets: "Tensors" } },
   { id: "pandas", name: "pandas + seaborn", icon: "🐼", cost: 2, rarity: "common", level: 13, type: "Spell", desc: "Built a bias-metric visualization pipeline for AI-generated summaries.", stats: { Charts: "Bias metrics", Damage: "Insight", Speed: "Fast", Targets: "DataFrames" } },
   { id: "symreg", name: "Symbolic Regression", icon: "∑", cost: 5, rarity: "legendary", level: 11, type: "Spell", desc: "Derived an interpretable 25-term formula from 45 physics-motivated features via LassoCV.", stats: { Features: "45 → 25 terms", "Hold-out R²": "0.0632", "10-fold R²": "0.0412", Targets: "Fault slip" } },
@@ -46,10 +46,10 @@ const PROJECTS = [
 ];
 
 const CHESTS = [
-  { name: "Wooden Chest", type: "wooden", gold: 120, fact: { icon: "⚽", title: "Football Brain", text: "Built a Premier League predictor and validated it against closing betting-market odds across three seasons." } },
-  { name: "Silver Chest", type: "silver", gold: 250, fact: { icon: "🏀", title: "Hoops Nerd", text: "Made an NBA expected-points model (xPTS) that rates every shot by distance, angle, clock and pressure." } },
-  { name: "Golden Chest", type: "golden", gold: 600, fact: { icon: "🔴", title: "Mars Mission", text: "Helped design a nitinol shape-memory-alloy motor to power Mars rovers. It's a published AIAA paper." } },
-  { name: "Magical Chest", type: "magical", gold: 1500, fact: { icon: "🛡️", title: "100% → 0%", text: "Designed a guardrail ablation study that cut prompt-injection success from 100% to 0%." } },
+  { name: "Holiday Chest", type: "wooden", gold: 120, fact: { icon: "⚽", title: "Football Brain", text: "Built a Premier League predictor and validated it against closing betting-market odds across three seasons." } },
+  { name: "Fire & Ice Chest", type: "silver", gold: 250, fact: { icon: "🏀", title: "Hoops Nerd", text: "Made an NBA expected-points model (xPTS) that rates every shot by distance, angle, clock and pressure." } },
+  { name: "Valentine Chest", type: "golden", gold: 600, fact: { icon: "🔴", title: "Mars Mission", text: "Helped design a nitinol shape-memory-alloy motor to power Mars rovers. It's a published AIAA paper." } },
+  { name: "Celebration Chest", type: "magical", gold: 1500, fact: { icon: "🛡️", title: "100% → 0%", text: "Designed a guardrail ablation study that cut prompt-injection success from 100% to 0%." } },
 ];
 
 const ROAD = [
@@ -101,11 +101,11 @@ const LOADING_TIPS = [
 
 const MAX_LEVEL = 15;
 const STAT_ICONS = ["⏳", "💥", "💨", "🎯"];
-const CHEST_COLORS = {
-  wooden: { body: "#b8743a", shade: "#8a5226", trim: "#9aa3ad" },
-  silver: { body: "#c9d5e3", shade: "#8e9cb0", trim: "#5f6d82" },
-  golden: { body: "#ffd04a", shade: "#e09a00", trim: "#b0601a" },
-  magical: { body: "#b45cff", shade: "#7a2ad0", trim: "#ffd23f" },
+const CHEST_ART = {
+  wooden: ["christmas", "christmas-open"],
+  silver: ["fireice", "fireice-open"],
+  golden: ["valentine", "valentine-open"],
+  magical: ["celebration", "celebration"],
 };
 const CHEST_LOOT = { wooden: [2, 8, 14], silver: [2, 12, 20], golden: [3, 16, 28], magical: [3, 26, 40] };
 const ALL_CARDS = [...DECK, ...COLLECTION];
@@ -130,7 +130,6 @@ const state = {
 
 let timers = [];
 let lastFocus = null;
-let chestUid = 0;
 let chestQueue = null;
 const later = (fn, ms) => timers.push(setTimeout(fn, ms));
 
@@ -142,32 +141,8 @@ function restartAnim(el, cls) {
 const shake = el => restartAnim(el, "shake");
 const bump = el => restartAnim(el, "bump");
 
-function chestSVG(type) {
-  const c = CHEST_COLORS[type];
-  const id = `lc${chestUid++}`;
-  const lid = "M10 42 Q10 12 50 12 Q90 12 90 42 Z";
-  return `<svg class="chest-svg" viewBox="0 0 100 92" aria-hidden="true">
-    <defs><clipPath id="${id}"><path d="${lid}"/></clipPath></defs>
-    <ellipse cx="50" cy="86" rx="40" ry="5" fill="rgba(0,0,0,.3)"/>
-    <rect x="12" y="40" width="76" height="42" rx="5" fill="${c.body}"/>
-    <rect x="12" y="64" width="76" height="18" rx="5" fill="${c.shade}"/>
-    <rect x="24" y="40" width="10" height="42" fill="${c.trim}"/>
-    <rect x="66" y="40" width="10" height="42" fill="${c.trim}"/>
-    <rect x="12" y="40" width="76" height="42" rx="5" fill="none" stroke="#1a1208" stroke-width="4"/>
-    <g class="chest-lid">
-      <path d="${lid}" fill="${c.body}"/>
-      <g clip-path="url(#${id})">
-        <rect x="24" y="0" width="10" height="50" fill="${c.trim}"/>
-        <rect x="66" y="0" width="10" height="50" fill="${c.trim}"/>
-        <path d="M20 26 Q50 10 80 26" stroke="rgba(255,255,255,.45)" stroke-width="5" fill="none" stroke-linecap="round"/>
-      </g>
-      <path d="${lid}" fill="none" stroke="#1a1208" stroke-width="4" stroke-linejoin="round"/>
-      <rect x="8" y="37" width="84" height="9" rx="3" fill="${c.trim}" stroke="#1a1208" stroke-width="3.5"/>
-      <rect x="41" y="38" width="18" height="20" rx="4" fill="#ffd23f" stroke="#1a1208" stroke-width="3.5"/>
-      <circle cx="50" cy="46" r="2.6" fill="#1a1208"/>
-      <rect x="49" y="47" width="2" height="6" fill="#1a1208"/>
-    </g>
-  </svg>`;
+function chestImg(type, open = false) {
+  return `<img class="chest-img" src="assets/chests/${CHEST_ART[type][open ? 1 : 0]}.webp" alt="" draggable="false">`;
 }
 
 function badgeSVG() {
@@ -175,7 +150,7 @@ function badgeSVG() {
     <defs><linearGradient id="bg-badge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6cc6ff"/><stop offset="1" stop-color="#1f5fc4"/></linearGradient></defs>
     <path d="M32 3 L60 12 V36 C60 54 46 64 32 69 C18 64 4 54 4 36 V12 Z" fill="url(#bg-badge)" stroke="#0d1b33" stroke-width="4" stroke-linejoin="round"/>
     <path d="M32 10 L53 17 V36 C53 49 43 57 32 61 C21 57 11 49 11 36 V17 Z" fill="none" stroke="#ffd23f" stroke-width="3"/>
-    <text x="32" y="45" text-anchor="middle" font-family="Lilita One, sans-serif" font-size="26" fill="#fff" stroke="#0d1b33" stroke-width="4" paint-order="stroke">${PROFILE.name[0]}</text>
+    <text x="32" y="45" text-anchor="middle" font-family="ClashDisplay, sans-serif" font-size="26" fill="#fff" stroke="#0d1b33" stroke-width="4" paint-order="stroke">${PROFILE.name[0]}</text>
   </svg>`;
 }
 
@@ -216,7 +191,7 @@ function renderHome() {
   $("#chest-slots").innerHTML = CHESTS.map((c, i) => {
     const opened = state.opened.has(i);
     return `<button class="slot ${opened ? "opened" : "ready"}" data-chest="${i}" aria-label="${c.name}">
-      ${chestSVG(c.type)}<span class="slot-label">${opened ? "Opened" : "Open!"}</span>
+      ${chestImg(c.type, opened)}<span class="slot-label">${opened ? "Opened" : "Open!"}</span>
     </button>`;
   }).join("");
 }
@@ -235,8 +210,11 @@ function cardHTML(c, tag = "button") {
   const lvl = state.levels[c.id];
   const label = c.locked ? "Learning" : `Level ${lvl}`;
   const attrs = tag === "button" ? ` data-card="${c.id}" aria-label="${c.name}, ${label}"` : "";
-  return `<${tag} class="card r-${c.rarity} ${c.locked ? "locked" : ""}"${attrs}>
-    <span class="card-frame"><span class="card-art"><span class="card-icon">${c.icon}</span></span><span class="card-level">${label}</span></span>
+  const face = c.art
+    ? `<span class="card-img"><img src="assets/cards/${c.art}.webp" alt="" loading="lazy" draggable="false"></span><span class="card-level solo">${label}</span>`
+    : `<span class="card-frame"><span class="card-art"><span class="card-icon">${c.icon}</span></span><span class="card-level">${label}</span></span>`;
+  return `<${tag} class="card r-${c.rarity} ${c.art ? "has-art" : ""} ${c.locked ? "locked" : ""}"${attrs}>
+    ${face}
     <span class="elixir"><span>${c.cost}</span></span>
     ${progressHTML(c)}
     <span class="card-name">${c.name}</span>
@@ -436,7 +414,7 @@ function openChest(i) {
   const done = state.opened.has(i);
   openModal(c.name, `<div class="chest-open ${done ? "opened revealed" : ""}" data-index="${i}">
     <div class="burst"></div>
-    <button class="chest-big" data-action="crack" aria-label="Open chest">${chestSVG(c.type)}<span class="chest-left" hidden></span></button>
+    <button class="chest-big" data-action="crack" aria-label="Open chest">${chestImg(c.type, done)}<span class="chest-left" hidden></span></button>
     <p class="tap-hint">Tap to open!</p>
     <div class="reward" data-action="crack">${done ? factHTML(c.fact) : ""}</div>
     <p class="tap-next" hidden></p>
@@ -452,6 +430,7 @@ function crackChest() {
   Sfx.play("thump");
   later(() => {
     wrap.classList.replace("opening", "opened");
+    wrap.querySelector(".chest-img").src = `assets/chests/${CHEST_ART[CHESTS[i].type][1]}.webp`;
     Sfx.play("open");
     state.opened.add(i);
     chestQueue = rollChest(CHESTS[i]);

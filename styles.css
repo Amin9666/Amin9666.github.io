@@ -1,3 +1,7 @@
+@font-face { font-family: "ClashDisplay"; src: url("assets/fonts/Clash-Bold.otf") format("opentype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Clash"; src: url("assets/fonts/Clash-Regular.otf") format("opentype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Clash"; src: url("assets/fonts/Clash-Bold.otf") format("opentype"); font-weight: 700 900; font-display: swap; }
+
 :root {
   --ink: #0d1b33;
   --navy: #0b2457;
@@ -34,7 +38,7 @@ h1, h2, h3, .btn, .lvl-badge span, .player-name, .xp-bar span, .res, .card-level
 .value-badge, .hero .title, .deck-foot, .slot-label, .loader-logo span, .loader-logo small,
 .loader-bottom small, .reward-count, .reward-name,
 .chest-left, .card-progress b, .up-arrow, .tap-next, .tap-hint, .sound-btn {
-  font-family: "Lilita One", system-ui, sans-serif;
+  font-family: "ClashDisplay", system-ui, sans-serif;
   font-weight: 400;
   letter-spacing: .4px;
   -webkit-text-stroke: 5px var(--ink);
@@ -241,7 +245,7 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
   border: 3px solid var(--ink);
   border-radius: 14px;
   padding: 6px 12px;
-  font-family: "Lilita One", system-ui, sans-serif;
+  font-family: "ClashDisplay", system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.15;
   box-shadow: 0 3px 0 var(--ink);
@@ -493,7 +497,7 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 .clan-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .clan-stats div { background: rgba(0, 0, 0, .25); border: 2px solid rgba(0, 0, 0, .35); border-radius: 10px; padding: 6px 10px; }
 .clan-stats small { display: block; font-size: 11px; color: #a9c6f5; }
-.clan-stats b { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 16px; }
+.clan-stats b { font-family: "ClashDisplay", system-ui, sans-serif; font-weight: 400; font-size: 16px; }
 .chat { display: flex; flex-direction: column; gap: 10px; }
 .msg {
   align-self: flex-start;
@@ -506,7 +510,7 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
   box-shadow: 0 3px 0 var(--ink);
 }
 .msg-head { display: flex; align-items: center; gap: 6px; font-size: 12px; }
-.msg-head b { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 15px; color: #2466c4; }
+.msg-head b { font-family: "ClashDisplay", system-ui, sans-serif; font-weight: 400; font-size: 15px; color: #2466c4; }
 .role { background: var(--gold); border: 1.5px solid var(--ink); border-radius: 5px; padding: 0 5px; font-size: 10px; color: var(--ink); }
 .msg time { margin-left: auto; padding-left: 10px; color: #8a9ab5; font-size: 11px; }
 .msg p { margin: 4px 0 0; font-size: 14px; line-height: 1.4; font-weight: 700; }
@@ -530,10 +534,10 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 }
 .members li:first-child .member { background: linear-gradient(#fff3c4, #ffd76a); }
 .member:hover { transform: translateX(4px); }
-.rank { font-family: "Lilita One", system-ui, sans-serif; font-size: 18px; width: 22px; text-align: center; color: var(--muted); }
+.rank { font-family: "ClashDisplay", system-ui, sans-serif; font-size: 18px; width: 22px; text-align: center; color: var(--muted); }
 .m-icon { font-size: 26px; }
 .m-name { display: flex; flex-direction: column; line-height: 1.15; flex: 1; min-width: 0; }
-.m-name b { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 17px; }
+.m-name b { font-family: "ClashDisplay", system-ui, sans-serif; font-weight: 400; font-size: 17px; }
 .m-name small { font-size: 12px; color: var(--muted); }
 .m-handle { font-size: 12.5px; color: #2466c4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
 
@@ -703,7 +707,7 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 .stat { display: flex; align-items: center; gap: 8px; background: #fff; border: 2px solid #b9c8dd; border-radius: 10px; padding: 6px 10px; }
 .stat-icon { font-size: 22px; }
 .stat small { display: block; font-size: 11px; color: #6b7c99; }
-.stat b { font-family: "Lilita One", system-ui, sans-serif; font-weight: 400; font-size: 16px; }
+.stat b { font-family: "ClashDisplay", system-ui, sans-serif; font-weight: 400; font-size: 16px; }
 
 .chest-open { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; min-height: 280px; }
 .burst {
@@ -730,7 +734,7 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 .chest-svg { display: block; width: 100%; overflow: visible; }
 .chest-lid { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .55s cubic-bezier(.2, 1.4, .5, 1); }
 .opened .chest-lid { transform: translate(-12px, -30px) rotate(-26deg); }
-.tap-hint { font-family: "Lilita One", system-ui, sans-serif; font-size: 20px; margin: 16px 0 0; animation: bob 1.2s ease-in-out infinite; }
+.tap-hint { font-family: "ClashDisplay", system-ui, sans-serif; font-size: 20px; margin: 16px 0 0; animation: bob 1.2s ease-in-out infinite; }
 .chest-open.opened .tap-hint { visibility: hidden; }
 .reward { display: none; position: relative; z-index: 1; width: 100%; cursor: pointer; }
 .chest-open.opened .reward { display: block; }
@@ -792,7 +796,7 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
   border: 3px solid var(--ink);
   border-radius: 12px;
   padding: 8px 18px;
-  font-family: "Lilita One", system-ui, sans-serif;
+  font-family: "ClashDisplay", system-ui, sans-serif;
   font-size: 17px;
   white-space: nowrap;
   opacity: 0;
@@ -865,6 +869,22 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 }
 .resources { align-items: center; }
 .sound-btn { margin-right: 8px; }
+
+/* Fan kit art */
+.card-img { display: block; width: 100%; aspect-ratio: 329 / 420; }
+.card-img img { display: block; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 0 rgba(13, 27, 51, .55)); }
+.card-level.solo { margin-top: 4px; }
+.has-art .elixir { top: 2%; left: -4px; }
+.locked .card-img img { filter: grayscale(1) brightness(.8); }
+.chest-img { display: block; width: 100%; height: auto; pointer-events: none; user-select: none; filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .25)); }
+.slot .chest-img { width: 92%; aspect-ratio: 1; object-fit: contain; }
+.slot.ready .chest-img { animation: bob 1.8s ease-in-out infinite; }
+.slot:nth-child(2) .chest-img { animation-delay: -.4s; }
+.slot:nth-child(3) .chest-img { animation-delay: -.8s; }
+.slot:nth-child(4) .chest-img { animation-delay: -1.2s; }
+.slot.opened .chest-img { opacity: .6; filter: grayscale(.4); }
+.chest-big .chest-img { aspect-ratio: 1; object-fit: contain; }
+.chest-open.opened .chest-big .chest-img { animation: pop .45s cubic-bezier(.2, 1.6, .4, 1); }
 
 /* Card progress */
 .card-progress {
@@ -961,3 +981,10 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
 }
 .disclaimer { margin: 28px auto 0; max-width: 46ch; text-align: center; font-size: 11.5px; font-weight: 700; line-height: 1.45; color: #a9c6f5; }
 .disclaimer a { color: #d9e8ff; }
+.modal-head h2 { color: #fff; }
+.xp-bar span { font-size: 10px; }
+@media (max-width: 420px) {
+  .xp-bar { width: 104px; }
+  .hero .title { font-size: 17px; }
+}
+.ribbon { color: #fff; }
