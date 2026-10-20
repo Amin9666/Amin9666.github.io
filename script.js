@@ -511,13 +511,33 @@ function toast(msg) {
   restartAnim(t, "show");
 }
 
+function showHint() {
+  try { if (localStorage.getItem("hinted")) return; localStorage.setItem("hinted", "1"); } catch { return; }
+  const el = document.createElement("div");
+  el.className = "coach";
+  el.innerHTML = `<span class="coach-hand">👆</span><span><b>Swipe or tap the tabs to explore</b><small>Tap the chests for fun facts</small></span>`;
+  $(".app").append(el);
+  const close = () => {
+    el.classList.add("gone");
+    setTimeout(() => el.remove(), 300);
+    document.removeEventListener("click", close, true);
+  };
+  document.addEventListener("click", close, true);
+  setTimeout(close, 5000);
+}
+
 function runLoader() {
   const el = $("#loader");
-  if (!el || document.documentElement.classList.contains("seen")) return el?.remove();
+  if (!el || document.documentElement.classList.contains("seen")) {
+    el?.remove();
+    return setTimeout(showHint, 600);
+  }
   $("#loader-tip").textContent = LOADING_TIPS[Math.floor(Math.random() * LOADING_TIPS.length)];
   const done = () => {
+    if (el.classList.contains("done")) return;
     el.classList.add("done");
     setTimeout(() => el.remove(), 400);
+    setTimeout(showHint, 500);
     try { sessionStorage.setItem("loaded", "1"); } catch {}
   };
   el.addEventListener("click", done, { once: true });
