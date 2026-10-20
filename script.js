@@ -47,10 +47,10 @@ const PROJECTS = [
 ];
 
 const CHESTS = [
-  { name: "Holiday Chest", type: "wooden", gold: 120, fact: { icon: "⚽", title: "Football Brain", text: "Built a Premier League predictor and validated it against closing betting-market odds across three seasons." } },
-  { name: "Fire & Ice Chest", type: "silver", gold: 250, fact: { icon: "🏀", title: "Hoops Nerd", text: "Made an NBA expected-points model (xPTS) that rates every shot by distance, angle, clock and pressure." } },
-  { name: "Valentine Chest", type: "golden", gold: 600, fact: { icon: "🔴", title: "Mars Mission", text: "Helped design a nitinol shape-memory-alloy motor to power Mars rovers. It's a published AIAA paper." } },
-  { name: "Celebration Chest", type: "magical", gold: 1500, fact: { icon: "🛡️", title: "100% → 0%", text: "Designed a guardrail ablation study that cut prompt-injection success from 100% to 0%." } },
+  { name: "Holiday Chest", type: "wooden", gold: 120, fact: { icon: "🫖", title: "Made in Morocco", text: "Born and raised in Morocco. Fluent in Darija (Moroccan Arabic) and French, so I can debug in three languages." } },
+  { name: "Fire & Ice Chest", type: "silver", gold: 250, fact: { icon: "🏀", title: "Semi-Pro Hooper", text: "I played semi-professional basketball. That's where the NBA shot-quality model came from." } },
+  { name: "Valentine Chest", type: "golden", gold: 600, fact: { icon: "🎧", title: "Beat Maker", text: "In high school I made beats for small-time rappers. Still waiting on those royalty checks." } },
+  { name: "Celebration Chest", type: "magical", gold: 1500, fact: { icon: "🤲", title: "Pilgrimage Fund", text: "I raised money so someone could make the trip for their pilgrimage." } },
 ];
 
 const ROAD = [
