@@ -91,6 +91,14 @@ const TABS = [
   { id: "road", label: "Journey", icon: "🏆" },
 ];
 
+const LOADING_TIPS = [
+  "Tip: Hit Battle on the home screen. Your cards are Amin's contact links!",
+  "Tip: Open the chests for fun facts and upgrade cards.",
+  "Tip: Swipe left and right (or use arrow keys) to switch tabs.",
+  "Tip: The Trophy Road tab has the full work history.",
+  "Tip: Tap the speaker in the top bar for sound effects.",
+];
+
 const MAX_LEVEL = 15;
 const STAT_ICONS = ["⏳", "💥", "💨", "🎯"];
 const CHEST_COLORS = {
@@ -99,11 +107,14 @@ const CHEST_COLORS = {
   golden: { body: "#ffd04a", shade: "#e09a00", trim: "#b0601a" },
   magical: { body: "#b45cff", shade: "#7a2ad0", trim: "#ffd23f" },
 };
+const CHEST_LOOT = { wooden: [2, 8, 14], silver: [2, 12, 20], golden: [3, 16, 28], magical: [3, 26, 40] };
 const ALL_CARDS = [...DECK, ...COLLECTION];
 
 const $ = (s, r = document) => r.querySelector(s);
 const fmt = n => n.toLocaleString("en-US");
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const cardsNeeded = lvl => lvl * 4;
+const upgradeCost = lvl => lvl * 100;
 
 const state = {
   tab: 2,
@@ -111,12 +122,25 @@ const state = {
   gems: PROFILE.gems,
   opened: new Set(),
   levels: Object.fromEntries(ALL_CARDS.map(c => [c.id, c.level])),
+  counts: Object.fromEntries(ALL_CARDS.map(c => {
+    const seed = [...c.id].reduce((s, ch) => s + ch.charCodeAt(0), 0);
+    return [c.id, Math.floor(cardsNeeded(c.level) * (0.3 + (seed % 7) / 10))];
+  })),
 };
 
 let timers = [];
 let lastFocus = null;
 let chestUid = 0;
+let chestQueue = null;
 const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+
+function restartAnim(el, cls) {
+  el.classList.remove(cls);
+  void el.offsetWidth;
+  el.classList.add(cls);
+}
+const shake = el => restartAnim(el, "shake");
+const bump = el => restartAnim(el, "bump");
 
 function chestSVG(type) {
   const c = CHEST_COLORS[type];
@@ -163,6 +187,7 @@ function renderHud() {
   $("#hud-xp-text").textContent = `${fmt(xp)}/${fmt(max)}`;
   $("#hud-gold").textContent = fmt(state.gold);
   $("#hud-gems").textContent = fmt(state.gems);
+  $("#sound-btn").textContent = Sfx.muted ? "🔇" : "🔊";
 }
 
 function addGold(delta) {
@@ -176,10 +201,7 @@ function addGold(delta) {
     if (p < 1) requestAnimationFrame(step);
   };
   requestAnimationFrame(step);
-  const pill = el.parentElement;
-  pill.classList.remove("bump");
-  void pill.offsetWidth;
-  pill.classList.add("bump");
+  bump(el.parentElement);
 }
 
 function renderHome() {
@@ -190,7 +212,7 @@ function renderHome() {
   $("#hero-name").textContent = PROFILE.name;
   $("#hero-title").textContent = PROFILE.title;
   $("#hero-tagline").textContent = PROFILE.tagline;
-  $("#quick-links").innerHTML = ["Résumé", "LinkedIn", "GitHub"].map(n => LINKS.find(l => l.name === n)).map(l => `<a class="btn btn-blue btn-sm" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("");
+  $("#quick-links").innerHTML = ["Résumé", "LinkedIn", "GitHub", "Email"].map(n => LINKS.find(l => l.name === n)).map(l => `<a class="btn btn-blue btn-sm" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("");
   $("#chest-slots").innerHTML = CHESTS.map((c, i) => {
     const opened = state.opened.has(i);
     return `<button class="slot ${opened ? "opened" : "ready"}" data-chest="${i}" aria-label="${c.name}">
@@ -199,13 +221,24 @@ function renderHome() {
   }).join("");
 }
 
+function progressHTML(c) {
+  const lvl = state.levels[c.id];
+  if (c.locked) return "";
+  if (lvl >= MAX_LEVEL) return `<span class="card-progress full"><i style="width:100%"></i><b>MAX</b></span>`;
+  const need = cardsNeeded(lvl);
+  const have = state.counts[c.id];
+  const full = have >= need;
+  return `<span class="card-progress ${full ? "full" : ""}"><i style="width:${Math.min(100, (have / need) * 100)}%"></i><b>${have}/${need}</b>${full ? `<span class="up-arrow">▲</span>` : ""}</span>`;
+}
+
 function cardHTML(c, tag = "button") {
   const lvl = state.levels[c.id];
-  const label = c.locked ? "Learning" : lvl >= MAX_LEVEL ? "Max" : `Level ${lvl}`;
+  const label = c.locked ? "Learning" : `Level ${lvl}`;
   const attrs = tag === "button" ? ` data-card="${c.id}" aria-label="${c.name}, ${label}"` : "";
   return `<${tag} class="card r-${c.rarity} ${c.locked ? "locked" : ""}"${attrs}>
     <span class="card-frame"><span class="card-art"><span class="card-icon">${c.icon}</span></span><span class="card-level">${label}</span></span>
     <span class="elixir"><span>${c.cost}</span></span>
+    ${progressHTML(c)}
     <span class="card-name">${c.name}</span>
   </${tag}>`;
 }
@@ -324,6 +357,12 @@ function openModal(title, html, variant = "") {
 function closeModal() {
   timers.forEach(clearTimeout);
   timers = [];
+  if (chestQueue) {
+    chestQueue.forEach(applyReward);
+    chestQueue = null;
+    renderDeck();
+    renderHome();
+  }
   $("#modal").hidden = true;
   lastFocus?.focus?.();
 }
@@ -331,12 +370,12 @@ function closeModal() {
 function openCard(id) {
   const c = ALL_CARDS.find(x => x.id === id);
   const lvl = state.levels[id];
-  const cost = lvl * 250;
+  const ready = state.counts[id] >= cardsNeeded(lvl);
   const action = c.locked
     ? `<button class="btn btn-gray" disabled>Still learning…</button>`
     : lvl >= MAX_LEVEL
       ? `<button class="btn btn-gray" disabled>Max Level</button>`
-      : `<button class="btn btn-green" data-upgrade="${id}">Upgrade <span class="cost">🪙 ${fmt(cost)}</span></button>`;
+      : `<button class="btn ${ready ? "btn-green" : "btn-gray"}" data-upgrade="${id}">Upgrade <span class="cost">🪙 ${fmt(upgradeCost(lvl))}</span></button>`;
   const html = `<div class="r-${c.rarity}">
     <div class="cd-top">
       ${cardHTML(c, "div")}
@@ -354,76 +393,99 @@ function openCard(id) {
 }
 
 function upgradeCard(id, btn) {
-  const cost = state.levels[id] * 250;
-  if (state.gold < cost) {
-    btn.classList.remove("shake");
-    void btn.offsetWidth;
-    btn.classList.add("shake");
-    toast("Not enough gold! Open some chests 🎁");
+  const lvl = state.levels[id];
+  const need = cardsNeeded(lvl) - state.counts[id];
+  const cost = upgradeCost(lvl);
+  if (need > 0 || state.gold < cost) {
+    Sfx.play("error");
+    shake(btn);
+    toast(need > 0 ? `Need ${need} more cards! Open chests 🎁` : "Not enough gold! Open some chests 🎁");
     return;
   }
   addGold(-cost);
+  state.counts[id] -= cardsNeeded(lvl);
   state.levels[id]++;
+  Sfx.play("win");
   confetti();
   toast(`Level up! ${ALL_CARDS.find(c => c.id === id).name} → ${state.levels[id]}`);
   renderDeck();
   openCard(id);
 }
 
+function rollChest(c) {
+  const [k, lo, hi] = CHEST_LOOT[c.type];
+  const pool = DECK.filter(x => state.levels[x.id] < MAX_LEVEL).sort(() => Math.random() - 0.5).slice(0, k);
+  return [
+    ...pool.map(card => ({ type: "card", card, n: lo + Math.floor(Math.random() * (hi - lo + 1)) })),
+    { type: "gold", n: c.gold },
+    { type: "fact", fact: c.fact },
+  ];
+}
+
+function applyReward(item) {
+  if (item.type === "card") state.counts[item.card.id] += item.n;
+  else if (item.type === "gold") addGold(item.n);
+}
+
+function factHTML(f) {
+  return `<div class="reward-item reward-card"><div class="reward-icon">${f.icon}</div><h3>${f.title}</h3><p>${f.text}</p></div>`;
+}
+
 function openChest(i) {
   const c = CHESTS[i];
   const done = state.opened.has(i);
-  openModal(c.name, `<div class="chest-open ${done ? "opened revealed" : ""}">
+  openModal(c.name, `<div class="chest-open ${done ? "opened revealed" : ""}" data-index="${i}">
     <div class="burst"></div>
-    <button class="chest-big" data-action="crack" aria-label="Open chest">${chestSVG(c.type)}</button>
+    <button class="chest-big" data-action="crack" aria-label="Open chest">${chestSVG(c.type)}<span class="chest-left" hidden></span></button>
     <p class="tap-hint">Tap to open!</p>
-    <div class="reward">
-      <div class="reward-card"><div class="reward-icon">${c.fact.icon}</div><h3>${c.fact.title}</h3><p>${c.fact.text}</p></div>
-      ${done ? "" : `<div class="reward-gold">+${fmt(c.gold)} 🪙</div>`}
-    </div>
+    <div class="reward" data-action="crack">${done ? factHTML(c.fact) : ""}</div>
+    <p class="tap-next" hidden></p>
   </div>`, "dark");
-  $(".chest-open").dataset.index = i;
 }
 
 function crackChest() {
   const wrap = $(".chest-open");
-  if (!wrap || wrap.matches(".opening, .opened")) return;
+  if (!wrap || wrap.matches(".opening, .revealed")) return;
+  if (wrap.classList.contains("opened")) return nextReward();
   const i = +wrap.dataset.index;
   wrap.classList.add("opening");
+  Sfx.play("thump");
   later(() => {
     wrap.classList.replace("opening", "opened");
-    confetti();
+    Sfx.play("open");
+    state.opened.add(i);
+    chestQueue = rollChest(CHESTS[i]);
+    $(".tap-next").hidden = false;
+    nextReward();
   }, 600);
-  later(() => {
-    wrap.classList.add("revealed");
-    if (!state.opened.has(i)) {
-      state.opened.add(i);
-      addGold(CHESTS[i].gold);
-      renderHome();
-    }
-  }, 1000);
 }
 
-function startBattle() {
-  openModal("Battle", `<div class="matchmaking">
-    <div class="mm-swords">⚔️</div>
-    <p class="mm-text">Searching for opponent<span class="dots"></span></p>
-    <p class="mm-sub">Matching around ${fmt(PROFILE.trophies)} 🏆</p>
-  </div>`, "dark");
-  later(() => {
-    $("#modal-title").textContent = "Opponent Found!";
-    $("#modal-body").innerHTML = `<div class="versus">
-      <div class="vs-side blue"><div class="vs-avatar">🙂</div><b>You</b><small>Visitor</small></div>
-      <div class="vs">VS</div>
-      <div class="vs-side red"><div class="vs-avatar">👑</div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
-    </div>
-    <p class="vs-msg">Best of one: send a message and let's build something.</p>
-    <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>
-    <div class="btn-row">
-      <a class="btn btn-yellow" href="mailto:${PROFILE.email}">✉️ Email</a>
-      ${LINKS.filter(l => l.name !== "Email").slice(0, 2).map(l => `<a class="btn btn-blue" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("")}
-    </div>`;
-  }, 1800);
+function nextReward() {
+  if (!chestQueue?.length) return;
+  const item = chestQueue.shift();
+  applyReward(item);
+  const box = $(".chest-open .reward");
+  if (item.type === "card") {
+    box.innerHTML = `<div class="reward-item">${cardHTML(item.card, "div")}<div class="reward-count">x${item.n}</div><div class="reward-name">${item.card.name}</div></div>`;
+    Sfx.play("card");
+  } else if (item.type === "gold") {
+    box.innerHTML = `<div class="reward-item"><div class="big-coin">🪙</div><div class="reward-gold">+${fmt(item.n)}</div></div>`;
+    Sfx.play("card");
+  } else {
+    box.innerHTML = factHTML(item.fact);
+    Sfx.play("win");
+    confetti();
+  }
+  const left = $(".chest-left");
+  left.textContent = chestQueue.length;
+  left.hidden = !chestQueue.length;
+  $(".tap-next").textContent = chestQueue.length ? "Tap to continue" : "Check your deck for upgrades!";
+  if (!chestQueue.length) {
+    chestQueue = null;
+    $(".chest-open").classList.add("revealed");
+    renderDeck();
+    renderHome();
+  }
 }
 
 function confetti(n = 70) {
@@ -443,29 +505,54 @@ function confetti(n = 70) {
 function toast(msg) {
   const t = $("#toast");
   t.textContent = msg;
-  t.classList.remove("show");
-  void t.offsetWidth;
-  t.classList.add("show");
+  restartAnim(t, "show");
+}
+
+function runLoader() {
+  const el = $("#loader");
+  if (!el || document.documentElement.classList.contains("seen")) return el?.remove();
+  $("#loader-tip").textContent = LOADING_TIPS[Math.floor(Math.random() * LOADING_TIPS.length)];
+  const done = () => {
+    el.classList.add("done");
+    setTimeout(() => el.remove(), 400);
+    try { sessionStorage.setItem("loaded", "1"); } catch {}
+  };
+  el.addEventListener("click", done, { once: true });
+  setTimeout(done, reducedMotion ? 300 : 1350);
 }
 
 document.addEventListener("click", e => {
-  const t = e.target.closest("[data-tab-btn],[data-card],[data-chest],[data-close],[data-upgrade],[data-copy],[data-action]");
+  if (e.target.closest(".btn, .deal, .member, .slot, .card:not(.hand-card)")) Sfx.play("click");
+  const t = e.target.closest("[data-tab-btn],[data-card],[data-chest],[data-close],[data-upgrade],[data-copy],[data-deploy],[data-action]");
   if (!t) return;
   const d = t.dataset;
-  if ("tabBtn" in d) setTab(+d.tabBtn);
-  else if ("card" in d) openCard(d.card);
+  if ("tabBtn" in d) {
+    Sfx.play("tab");
+    setTab(+d.tabBtn);
+  } else if ("card" in d) openCard(d.card);
   else if ("chest" in d) openChest(+d.chest);
   else if ("close" in d) closeModal();
   else if ("upgrade" in d) upgradeCard(d.upgrade, t);
+  else if ("deploy" in d) deploy(+d.deploy, t);
   else if ("copy" in d) navigator.clipboard?.writeText(d.copy).then(() => toast("Copied to clipboard!"), () => toast(d.copy));
   else if (d.action === "battle") startBattle();
+  else if (d.action === "exit-battle") exitBattle();
   else if (d.action === "crack") crackChest();
+  else if (d.action === "sound") {
+    const muted = Sfx.toggle();
+    t.textContent = muted ? "🔇" : "🔊";
+    toast(muted ? "Sound off" : "Sound on");
+    Sfx.play("click");
+  }
 });
 
 document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && !$("#modal").hidden) closeModal();
-  else if ($("#modal").hidden && e.key === "ArrowRight") setTab(state.tab + 1);
-  else if ($("#modal").hidden && e.key === "ArrowLeft") setTab(state.tab - 1);
+  const inBattle = !$("#battle").hidden;
+  const modalOpen = !$("#modal").hidden;
+  if (e.key === "Escape" && modalOpen) closeModal();
+  else if (e.key === "Escape" && inBattle) exitBattle();
+  else if (!modalOpen && !inBattle && e.key === "ArrowRight") setTab(state.tab + 1);
+  else if (!modalOpen && !inBattle && e.key === "ArrowLeft") setTab(state.tab - 1);
 });
 
 let touchX = 0;
@@ -477,9 +564,13 @@ $("#screens").addEventListener("touchstart", e => {
 $("#screens").addEventListener("touchend", e => {
   const dx = e.changedTouches[0].clientX - touchX;
   const dy = e.changedTouches[0].clientY - touchY;
-  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) setTab(state.tab + (dx < 0 ? 1 : -1));
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+    Sfx.play("tab");
+    setTab(state.tab + (dx < 0 ? 1 : -1));
+  }
 }, { passive: true });
 
+$("#home-arena").insertAdjacentHTML("afterbegin", arenaSVG("0 210 360 270"));
 renderHud();
 renderHome();
 renderDeck();
@@ -489,6 +580,7 @@ renderRoad();
 renderTabbar();
 tickCountdown();
 setInterval(tickCountdown, 1000);
+runLoader();
 
 const fromHash = TABS.findIndex(t => `#${t.id}` === location.hash);
 setTab(fromHash >= 0 ? fromHash : 2);
