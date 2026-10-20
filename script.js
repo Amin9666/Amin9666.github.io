@@ -2,7 +2,8 @@ const PROFILE = {
   name: "Amin Weinman",
   title: "Software Engineer · AI Researcher",
   tagline: "CS + Math @ New Mexico Tech ('27). I build fast distributed systems, guarded AI agents, and the occasional sports model.",
-  greeting: "Hey there! 👋",
+  greeting: "Hey there!",
+  emote: "assets/emotes/fingerheart.webp",
   level: 13,
   xp: [7240, 10000],
   trophies: 6420,
@@ -25,18 +26,18 @@ const DECK = [
 ];
 
 const COLLECTION = [
-  { id: "sql", name: "SQL", icon: "🗄️", cost: 2, rarity: "common", level: 13, type: "Spell", desc: "Asks the database exactly the right question.", stats: { Pairs: "PostgreSQL", Damage: "Joins", Speed: "Fast", Targets: "Tables" } },
-  { id: "flask", name: "Flask", icon: "🧪", cost: 3, rarity: "rare", level: 12, type: "Troop", desc: "Lightweight Python web framework for APIs.", stats: { Builds: "REST APIs", Weight: "Light", Speed: "Fast", Targets: "Endpoints" } },
-  { id: "docker", name: "Docker", icon: "🐳", cost: 5, rarity: "epic", level: 11, type: "Spell", desc: "Packs the whole army into a container and drops it anywhere.", stats: { Radius: "Any cloud", Repro: "100%", Speed: "Medium", Targets: "Deploys" } },
+  { id: "sql", name: "SQL", icon: "🗄️", cost: 2, rarity: "common", art: "bats", level: 13, type: "Spell", desc: "Asks the database exactly the right question.", stats: { Pairs: "PostgreSQL", Damage: "Joins", Speed: "Fast", Targets: "Tables" } },
+  { id: "flask", name: "Flask", icon: "🧪", cost: 3, rarity: "rare", art: "barbhut", level: 12, type: "Troop", desc: "Lightweight Python web framework for APIs.", stats: { Builds: "REST APIs", Weight: "Light", Speed: "Fast", Targets: "Endpoints" } },
+  { id: "docker", name: "Docker", icon: "🐳", cost: 5, rarity: "epic", art: "goblindrill", level: 11, type: "Spell", desc: "Packs the whole army into a container and drops it anywhere.", stats: { Radius: "Any cloud", Repro: "100%", Speed: "Medium", Targets: "Deploys" } },
   { id: "git", name: "Git", icon: "🌿", cost: 1, rarity: "legendary", art: "berserker", level: 14, type: "Spell", desc: "Rewinds time. Also runs GitHub Actions pipelines that keep charts current on every push.", stats: { CI: "GitHub Actions", Branches: "Many", Speed: "Instant", Targets: "History" } },
-  { id: "tf", name: "TensorFlow", icon: "🔶", cost: 6, rarity: "epic", level: 11, type: "Troop", desc: "Heavy-hitting deep learning framework.", stats: { Type: "Deep learning", Damage: "High", Speed: "GPU-bound", Targets: "Tensors" } },
-  { id: "pandas", name: "pandas + seaborn", icon: "🐼", cost: 2, rarity: "common", level: 13, type: "Spell", desc: "Built a bias-metric visualization pipeline for AI-generated summaries.", stats: { Charts: "Bias metrics", Damage: "Insight", Speed: "Fast", Targets: "DataFrames" } },
-  { id: "symreg", name: "Symbolic Regression", icon: "∑", cost: 5, rarity: "legendary", level: 11, type: "Spell", desc: "Derived an interpretable 25-term formula from 45 physics-motivated features via LassoCV.", stats: { Features: "45 → 25 terms", "Hold-out R²": "0.0632", "10-fold R²": "0.0412", Targets: "Fault slip" } },
-  { id: "qiskit", name: "Qiskit", icon: "⚛", cost: 7, rarity: "legendary", level: 10, type: "Spell", desc: "Quantum Amplitude Estimation on a real model probability, a quadratic speedup over classical Monte Carlo.", stats: { Algorithm: "QAE", Speedup: "Quadratic", Speed: "Quantum", Targets: "Probabilities" } },
+  { id: "tf", name: "TensorFlow", icon: "🔶", cost: 6, rarity: "epic", art: "giantbomber", level: 11, type: "Troop", desc: "Heavy-hitting deep learning framework.", stats: { Type: "Deep learning", Damage: "High", Speed: "GPU-bound", Targets: "Tensors" } },
+  { id: "pandas", name: "pandas + seaborn", icon: "🐼", cost: 2, rarity: "epic", art: "babydragon", level: 13, type: "Spell", desc: "Built a bias-metric visualization pipeline for AI-generated summaries.", stats: { Charts: "Bias metrics", Damage: "Insight", Speed: "Fast", Targets: "DataFrames" } },
+  { id: "symreg", name: "Symbolic Regression", icon: "∑", cost: 5, rarity: "epic", art: "dartgoblin", level: 11, type: "Spell", desc: "Derived an interpretable 25-term formula from 45 physics-motivated features via LassoCV.", stats: { Features: "45 → 25 terms", "Hold-out R²": "0.0632", "10-fold R²": "0.0412", Targets: "Fault slip" } },
+  { id: "qiskit", name: "Qiskit", icon: "⚛", cost: 7, rarity: "legendary", art: "balloon", level: 10, type: "Spell", desc: "Quantum Amplitude Estimation on a real model probability, a quadratic speedup over classical Monte Carlo.", stats: { Algorithm: "QAE", Speedup: "Quadratic", Speed: "Quantum", Targets: "Probabilities" } },
 ];
 
 const PROJECTS = [
-  { name: "Guarded Agentic Triage", icon: "🛰️", featured: true, desc: "A tool-using LLM agent that triages anomalies in 142K+ rows of satellite telemetry, behind a 5-guardrail stack. Presented through CRA at IEEE Quantum Week 2026.", tags: ["Python", "LLM Agents", "AI Safety"], url: "", label: "IEEE Quantum Week 2026" },
+  { name: "Guarded Agentic Triage", icon: "🛰️", art: "darkprince", featured: true, desc: "A tool-using LLM agent that triages anomalies in 142K+ rows of satellite telemetry, behind a 5-guardrail stack. Presented through CRA at IEEE Quantum Week 2026.", tags: ["Python", "LLM Agents", "AI Safety"], url: "", label: "IEEE Quantum Week 2026" },
   { name: "xPTS Shot Quality", icon: "🏀", desc: "NBA expected-points model from shot distance, angle, clock and pressure, with auto-updating shot charts.", tags: ["Python", "ML", "GH Actions"], url: "https://github.com/Amin9666" },
   { name: "Premier League Predictor", icon: "⚽", desc: "Dixon-Coles + Monte Carlo, backtested against closing odds, with a Qiskit QAE experiment.", tags: ["Python", "Stats", "Qiskit"], url: "https://github.com/Amin9666" },
   { name: "Mars Rover Nitinol Motor", icon: "🔴", desc: "NASA MINDS shape-memory-alloy motor. Peer-reviewed paper at AIAA Aviation 2024.", tags: ["Research", "NASA"], url: "https://doi.org/10.2514/6.2024-4888" },
@@ -183,7 +184,7 @@ function renderHome() {
   $("#trophy-count").textContent = fmt(PROFILE.trophies);
   $("#location").textContent = PROFILE.location;
   $("#arena-name").textContent = PROFILE.arena;
-  $("#greeting").textContent = PROFILE.greeting;
+  $("#greeting").innerHTML = `<img class="bubble-emote" src="${PROFILE.emote}" alt=""><span>${PROFILE.greeting}</span>`;
   $("#hero-name").textContent = PROFILE.name;
   $("#hero-title").textContent = PROFILE.title;
   $("#hero-tagline").textContent = PROFILE.tagline;
@@ -236,7 +237,7 @@ function renderShop() {
   $("#special-offer").innerHTML = `<div class="offer">
     <span class="ribbon">Special Offer</span>
     <span class="value-badge">x10<br>value</span>
-    <span class="offer-art">${featured.icon}</span>
+    <span class="offer-art ${featured.art ? "has-art" : ""}">${featured.art ? `<img src="assets/cards/${featured.art}.webp" alt="">` : featured.icon}</span>
     <div><h3>${featured.name}</h3><p>${featured.desc}</p>${tags(featured)}</div>
     ${featured.url
       ? `<a class="btn btn-green" href="${featured.url}" target="_blank" rel="noopener">View Project</a>`
@@ -478,7 +479,7 @@ function startBattle() {
     $("#modal-body").innerHTML = `<div class="versus">
       <div class="vs-side blue"><div class="vs-avatar">🙂</div><b>You</b><small>Visitor</small></div>
       <div class="vs">VS</div>
-      <div class="vs-side red"><div class="vs-avatar">👑</div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
+      <div class="vs-side red"><div class="vs-avatar"><img src="${PROFILE.emote}" alt=""></div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
     </div>
     <p class="vs-msg">Best of one: send a message and let's build something.</p>
     <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>

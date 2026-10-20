@@ -988,3 +988,8 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
   .hero .title { font-size: 17px; }
 }
 .ribbon { color: #fff; }
+.offer-art.has-art { background: none; border: 0; }
+.offer-art img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 4px 0 rgba(13, 27, 51, .45)); }
+.bubble { display: flex; align-items: center; gap: 6px; padding: 4px 10px 4px 4px; top: 30%; }
+.bubble-emote { width: 52px; height: auto; flex: none; }
+.vs-avatar img { width: 64px; height: 64px; object-fit: contain; }
