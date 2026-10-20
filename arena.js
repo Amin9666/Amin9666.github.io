@@ -9,17 +9,6 @@ const TOWERS = {
   br: { x: 280, y: 340, team: "blue" },
   bk: { x: 180, y: 410, team: "blue", king: true },
 };
-const BATTLE_CARDS = [
-  { link: "Résumé", cost: 3, rarity: "legendary" },
-  { link: "LinkedIn", cost: 2, rarity: "epic" },
-  { link: "GitHub", cost: 2, rarity: "rare" },
-  { link: "Email", cost: 1, rarity: "common" },
-];
-
-const battle = { raf: 0, tick: 0, last: 0, elixir: 5, crowns: 0, time: 180, claimed: new Set(), timers: [] };
-const battleLater = (fn, ms) => battle.timers.push(setTimeout(fn, ms));
-const stagePos = ([x, y]) => ({ left: `${(x / ARENA_W) * 100}%`, top: `${(y / ARENA_H) * 100}%` });
-
 function towerSVG(id, t) {
   const c = TEAM[t.team].main;
   const ink = `stroke="#0d1b33" stroke-linejoin="round"`;
@@ -41,15 +30,6 @@ function towerSVG(id, t) {
       <path d="M10 -4 h8 v14 l-4 -3 l-4 3 Z" fill="${c}" ${ink} stroke-width="2"/>
       <path d="M-7 22 V13 Q0 5 7 13 V22 Z" fill="#5b3a1f" ${ink} stroke-width="2.5"/>
       ${top}
-    </g>
-    <g class="rubble">
-      <circle cx="-11" cy="14" r="8" fill="#8f9bb0" stroke="#0d1b33" stroke-width="2"/>
-      <circle cx="9" cy="16" r="9" fill="#a6b1c2" stroke="#0d1b33" stroke-width="2"/>
-      <circle cx="-1" cy="5" r="7" fill="#c3ccd8" stroke="#0d1b33" stroke-width="2"/>
-    </g>
-    <g class="hp" transform="translate(0 32)">
-      <rect x="-22" y="0" width="44" height="7" rx="3" fill="#0d1b33"/>
-      <rect class="hp-fill" x="-21" y="1" width="42" height="5" rx="2" fill="${c}"/>
     </g>
   </g>`;
 }
@@ -88,150 +68,4 @@ function arenaSVG(viewBox = `0 0 ${ARENA_W} ${ARENA_H}`) {
     ${waves}${bridge(80)}${bridge(280)}${bushes}
     ${Object.entries(TOWERS).map(([id, t]) => towerSVG(id, t)).join("")}
   </svg>`;
-}
-
-function handCard(c, i) {
-  const l = LINKS.find(x => x.name === c.link);
-  return `<button class="card hand-card r-${c.rarity}" data-deploy="${i}" aria-label="Deploy ${l.name}, costs ${c.cost} elixir">
-    <span class="card-frame"><span class="card-art"><span class="card-icon">${l.icon}</span></span><span class="card-level">${l.name}</span></span>
-    <span class="elixir"><span>${c.cost}</span></span>
-  </button>`;
-}
-
-function startBattle() {
-  const el = $("#battle");
-  el.innerHTML = `
-    <div class="b-top">
-      <div class="b-name"><b>${PROFILE.name}</b><small>${CLAN.name}</small></div>
-      <div class="b-timer"><small>Time left:</small><b id="b-time">3:00</b></div>
-    </div>
-    <div class="b-field"><div class="b-stage" id="b-stage">${arenaSVG()}
-      <div class="b-crowns"><span>👑</span><b id="b-crowns">0</b></div>
-      <div class="b-hint" id="b-hint">Tap a card to deploy it!</div>
-    </div></div>
-    <div class="b-bottom">
-      <div class="b-reward" id="b-reward" hidden></div>
-      <div class="b-hand">${BATTLE_CARDS.map(handCard).join("")}</div>
-      <div class="b-elixir"><span class="elixir static"><span id="b-elixir-n">5</span></span><div class="b-elixir-bar"><i id="b-elixir-fill"></i></div></div>
-    </div>
-    <button class="b-exit" data-action="exit-battle" aria-label="Leave battle">✕</button>
-    <div class="b-intro">
-      <div class="vs-side blue"><div class="vs-avatar">🙂</div><b>You</b><small>Visitor</small></div>
-      <div class="vs">VS</div>
-      <div class="vs-side red"><div class="vs-avatar">👑</div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
-    </div>`;
-  Object.assign(battle, { elixir: 5, crowns: 0, time: 180, claimed: new Set(), last: performance.now() });
-  el.hidden = false;
-  $(".app").classList.add("in-battle");
-  battleLater(() => el.querySelector(".b-intro")?.classList.add("gone"), reducedMotion ? 300 : 1400);
-  battle.raf = requestAnimationFrame(battleLoop);
-  battle.tick = setInterval(() => {
-    battle.time = Math.max(0, battle.time - 1);
-    const t = $("#b-time");
-    t.textContent = `${Math.floor(battle.time / 60)}:${String(battle.time % 60).padStart(2, "0")}`;
-    t.parentElement.classList.toggle("low", battle.time <= 60);
-  }, 1000);
-  el.querySelector(".b-exit").focus();
-}
-
-function battleLoop(t) {
-  battle.elixir = Math.min(10, battle.elixir + (t - battle.last) / 700);
-  battle.last = t;
-  $("#b-elixir-fill").style.width = `${battle.elixir * 10}%`;
-  $("#b-elixir-n").textContent = Math.floor(battle.elixir);
-  document.querySelectorAll(".hand-card").forEach(b => b.classList.toggle("ready", battle.elixir >= BATTLE_CARDS[b.dataset.deploy].cost));
-  battle.raf = requestAnimationFrame(battleLoop);
-}
-
-function exitBattle() {
-  cancelAnimationFrame(battle.raf);
-  clearInterval(battle.tick);
-  battle.timers.forEach(clearTimeout);
-  battle.timers = [];
-  const el = $("#battle");
-  el.hidden = true;
-  el.innerHTML = "";
-  $(".app").classList.remove("in-battle");
-}
-
-function deploy(i, btn) {
-  const c = BATTLE_CARDS[i];
-  if (battle.elixir < c.cost) {
-    Sfx.play("error");
-    shake(btn);
-    toast("Not enough elixir!");
-    return;
-  }
-  battle.elixir -= c.cost;
-  Sfx.play("deploy");
-  $("#b-hint")?.remove();
-  const target = ["rl", "rr", "rk"].find(id => !battle.claimed.has(id));
-  if (target) battle.claimed.add(target);
-  const x = target === "rr" ? 280 : 80;
-  const pts = !target
-    ? [[x, 318], [x, 240], [180, 200]]
-    : target === "rk"
-      ? [[x, 318], [x, 240], [x, 182], [x < 180 ? 140 : 220, 122]]
-      : [[x, 318], [x, 240], [x, 186]];
-  const troop = document.createElement("div");
-  troop.className = "troop";
-  troop.innerHTML = `<span>${LINKS.find(l => l.name === c.link).icon}</span>`;
-  Object.assign(troop.style, stagePos(pts[0]));
-  $("#b-stage").append(troop);
-  const anim = troop.animate(pts.map(stagePos), { duration: reducedMotion ? 10 : 1700, fill: "forwards" });
-  anim.onfinish = () => strike(troop, target, c);
-}
-
-function strike(troop, target, c) {
-  troop.classList.add("attacking");
-  if (!target) {
-    battleLater(() => { troop.classList.add("poof"); showBattleReward(c); }, 400);
-    battleLater(() => troop.remove(), 800);
-    return;
-  }
-  const tower = $(`#b-stage [data-tower="${target}"]`);
-  tower.classList.add("hit");
-  battleLater(() => {
-    tower.classList.add("destroyed");
-    Sfx.play("hit");
-    const boom = document.createElement("div");
-    boom.className = "boom";
-    boom.textContent = "💥";
-    Object.assign(boom.style, stagePos([TOWERS[target].x, TOWERS[target].y]));
-    $("#b-stage").append(boom);
-    battleLater(() => boom.remove(), 700);
-    troop.classList.add("poof");
-    battleLater(() => troop.remove(), 400);
-    battle.crowns++;
-    const cr = $("#b-crowns");
-    cr.textContent = battle.crowns;
-    bump(cr.parentElement);
-    showBattleReward(c);
-    if (target === "rk") battleLater(victory, 1200);
-  }, 650);
-}
-
-function showBattleReward(c) {
-  const l = LINKS.find(x => x.name === c.link);
-  const action = l.name === "Email"
-    ? `<button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button><a class="btn btn-yellow btn-sm" href="${l.url}">Send</a>`
-    : `<a class="btn btn-yellow btn-sm" href="${l.url}" target="_blank" rel="noopener">Open</a>`;
-  const box = $("#b-reward");
-  box.innerHTML = `<span class="br-icon">${l.icon}</span><span class="br-text"><b>${l.name} unlocked!</b><small>${l.handle}</small></span>${action}`;
-  box.hidden = false;
-  bump(box);
-}
-
-function victory() {
-  Sfx.play("win");
-  confetti();
-  const v = document.createElement("div");
-  v.className = "b-victory";
-  v.innerHTML = `<h2>Victory!</h2>
-    <div class="v-crowns"><span>👑</span><span>👑</span><span>👑</span></div>
-    <p>Three crowns! You've won a conversation with ${PROFILE.name.split(" ")[0]}.</p>
-    <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>
-    <div class="btn-row">${LINKS.filter(l => l.name !== "Email").slice(0, 3).map(l => `<a class="btn btn-blue btn-sm" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("")}</div>
-    <button class="btn btn-green" data-action="exit-battle">OK</button>`;
-  $("#battle").append(v);
 }

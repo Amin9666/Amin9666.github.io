@@ -92,7 +92,7 @@ const TABS = [
 ];
 
 const LOADING_TIPS = [
-  "Tip: Hit Battle on the home screen. Your cards are Amin's contact links!",
+  "Tip: Hit Battle on the home screen to get in touch.",
   "Tip: Open the chests for fun facts and upgrade cards.",
   "Tip: Swipe left and right (or use arrow keys) to switch tabs.",
   "Tip: The Trophy Road tab has the full work history.",
@@ -488,6 +488,29 @@ function nextReward() {
   }
 }
 
+function startBattle() {
+  openModal("Battle", `<div class="matchmaking">
+    <div class="mm-swords">⚔️</div>
+    <p class="mm-text">Searching for opponent<span class="dots"></span></p>
+    <p class="mm-sub">Matching around ${fmt(PROFILE.trophies)} 🏆</p>
+  </div>`, "dark");
+  later(() => {
+    $("#modal-title").textContent = "Opponent Found!";
+    $("#modal-body").innerHTML = `<div class="versus">
+      <div class="vs-side blue"><div class="vs-avatar">🙂</div><b>You</b><small>Visitor</small></div>
+      <div class="vs">VS</div>
+      <div class="vs-side red"><div class="vs-avatar">👑</div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
+    </div>
+    <p class="vs-msg">Best of one: send a message and let's build something.</p>
+    <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>
+    <div class="btn-row">
+      <a class="btn btn-yellow" href="mailto:${PROFILE.email}">✉️ Email</a>
+      ${LINKS.filter(l => l.name !== "Email").slice(0, 3).map(l => `<a class="btn btn-blue" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("")}
+    </div>`;
+    Sfx.play("win");
+  }, 1500);
+}
+
 function confetti(n = 70) {
   if (reducedMotion) return;
   const colors = ["#ffd23f", "#ff5a4f", "#4aa3f0", "#6fdc45", "#b45cff", "#ffffff"];
@@ -522,8 +545,8 @@ function runLoader() {
 }
 
 document.addEventListener("click", e => {
-  if (e.target.closest(".btn, .deal, .member, .slot, .card:not(.hand-card)")) Sfx.play("click");
-  const t = e.target.closest("[data-tab-btn],[data-card],[data-chest],[data-close],[data-upgrade],[data-copy],[data-deploy],[data-action]");
+  if (e.target.closest(".btn, .deal, .member, .slot, .card")) Sfx.play("click");
+  const t = e.target.closest("[data-tab-btn],[data-card],[data-chest],[data-close],[data-upgrade],[data-copy],[data-action]");
   if (!t) return;
   const d = t.dataset;
   if ("tabBtn" in d) {
@@ -533,10 +556,8 @@ document.addEventListener("click", e => {
   else if ("chest" in d) openChest(+d.chest);
   else if ("close" in d) closeModal();
   else if ("upgrade" in d) upgradeCard(d.upgrade, t);
-  else if ("deploy" in d) deploy(+d.deploy, t);
   else if ("copy" in d) navigator.clipboard?.writeText(d.copy).then(() => toast("Copied to clipboard!"), () => toast(d.copy));
   else if (d.action === "battle") startBattle();
-  else if (d.action === "exit-battle") exitBattle();
   else if (d.action === "crack") crackChest();
   else if (d.action === "sound") {
     const muted = Sfx.toggle();
@@ -547,12 +568,10 @@ document.addEventListener("click", e => {
 });
 
 document.addEventListener("keydown", e => {
-  const inBattle = !$("#battle").hidden;
   const modalOpen = !$("#modal").hidden;
   if (e.key === "Escape" && modalOpen) closeModal();
-  else if (e.key === "Escape" && inBattle) exitBattle();
-  else if (!modalOpen && !inBattle && e.key === "ArrowRight") setTab(state.tab + 1);
-  else if (!modalOpen && !inBattle && e.key === "ArrowLeft") setTab(state.tab - 1);
+  else if (!modalOpen && e.key === "ArrowRight") setTab(state.tab + 1);
+  else if (!modalOpen && e.key === "ArrowLeft") setTab(state.tab - 1);
 });
 
 let touchX = 0;
@@ -578,6 +597,7 @@ renderShop();
 renderClan();
 renderRoad();
 renderTabbar();
+document.querySelectorAll(".screen").forEach(sc => sc.insertAdjacentHTML("beforeend", `<p class="disclaimer">This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy: <a href="https://www.supercell.com/fan-content-policy" target="_blank" rel="noopener">www.supercell.com/fan-content-policy</a>.</p>`));
 tickCountdown();
 setInterval(tickCountdown, 1000);
 runLoader();
