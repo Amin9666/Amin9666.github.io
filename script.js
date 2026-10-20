@@ -47,10 +47,10 @@ const PROJECTS = [
 ];
 
 const CHESTS = [
-  { name: "Holiday Chest", type: "wooden", gold: 120, fact: { icon: "🫖", title: "Made in Morocco", text: "Born and raised in Morocco. Fluent in Darija (Moroccan Arabic) and French, so I can debug in three languages." } },
-  { name: "Fire & Ice Chest", type: "silver", gold: 250, fact: { icon: "🏀", title: "Semi-Pro Hooper", text: "I played semi-professional basketball. That's where the NBA shot-quality model came from." } },
-  { name: "Valentine Chest", type: "golden", gold: 600, fact: { icon: "🎧", title: "Beat Maker", text: "In high school I made beats for small-time rappers. Still waiting on those royalty checks." } },
-  { name: "Celebration Chest", type: "magical", gold: 1500, fact: { icon: "🤲", title: "Pilgrimage Fund", text: "I raised money so someone could make the trip for their pilgrimage." } },
+  { name: "Holiday Chest", type: "wooden", fact: { icon: "🫖", title: "Made in Morocco", text: "Born and raised in Morocco. Fluent in Darija (Moroccan Arabic) and French, so I can debug in three languages." } },
+  { name: "Fire & Ice Chest", type: "silver", fact: { icon: "🏀", title: "Semi-Pro Hooper", text: "I played semi-professional basketball. That's where the NBA shot-quality model came from." } },
+  { name: "Valentine Chest", type: "golden", fact: { icon: "🎧", title: "Beat Maker", text: "In high school I made beats for small-time rappers. Still waiting on those royalty checks." } },
+  { name: "Celebration Chest", type: "magical", fact: { icon: "🤲", title: "Pilgrimage Fund", text: "I raised money so someone could make the trip for their pilgrimage." } },
 ];
 
 const ROAD = [
@@ -94,7 +94,7 @@ const TABS = [
 
 const LOADING_TIPS = [
   "Tip: Hit Battle on the home screen to get in touch.",
-  "Tip: Open the chests for fun facts and upgrade cards.",
+  "Tip: Open the chests for fun facts about Amin.",
   "Tip: Swipe left and right (or use arrow keys) to switch tabs.",
   "Tip: The Trophy Road tab has the full work history.",
   "Tip: Tap the speaker in the top bar for sound effects.",
@@ -108,7 +108,6 @@ const CHEST_ART = {
   golden: ["valentine", "valentine-open"],
   magical: ["celebration", "celebration"],
 };
-const CHEST_LOOT = { wooden: [2, 8, 14], silver: [2, 12, 20], golden: [3, 16, 28], magical: [3, 26, 40] };
 const ALL_CARDS = [...DECK, ...COLLECTION];
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -378,7 +377,7 @@ function upgradeCard(id, btn) {
   if (need > 0 || state.gold < cost) {
     Sfx.play("error");
     shake(btn);
-    toast(need > 0 ? `Need ${need} more cards! Open chests 🎁` : "Not enough gold! Open some chests 🎁");
+    toast(need > 0 ? `Need ${need} more cards!` : "Not enough gold!");
     return;
   }
   addGold(-cost);
@@ -392,13 +391,7 @@ function upgradeCard(id, btn) {
 }
 
 function rollChest(c) {
-  const [k, lo, hi] = CHEST_LOOT[c.type];
-  const pool = DECK.filter(x => state.levels[x.id] < MAX_LEVEL).sort(() => Math.random() - 0.5).slice(0, k);
-  return [
-    ...pool.map(card => ({ type: "card", card, n: lo + Math.floor(Math.random() * (hi - lo + 1)) })),
-    { type: "gold", n: c.gold },
-    { type: "fact", fact: c.fact },
-  ];
+  return [{ type: "fact", fact: c.fact }];
 }
 
 function applyReward(item) {
@@ -435,7 +428,6 @@ function crackChest() {
     Sfx.play("open");
     state.opened.add(i);
     chestQueue = rollChest(CHESTS[i]);
-    $(".tap-next").hidden = false;
     nextReward();
   }, 600);
 }
@@ -481,7 +473,7 @@ function startBattle() {
       <div class="vs">VS</div>
       <div class="vs-side red"><div class="vs-avatar"><img src="${PROFILE.emote}" alt=""></div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
     </div>
-    <p class="vs-msg">Best of one: loser buys dinner.</p>
+    <p class="vs-msg">Best of one: loser has to email the other for a coffee chat.</p>
     <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>
     <div class="btn-row">
       <a class="btn btn-yellow" href="mailto:${PROFILE.email}">✉️ Email</a>
