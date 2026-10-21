@@ -4,20 +4,154 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#173f86">
-<meta name="description" content="Amin Weinman: software engineer and AI researcher. CS + Math at New Mexico Tech ('27). Experience at Sandia National Labs, Metrical.al and DREU.">
+<meta name="description" content="Amin Weinman: software engineer and AI researcher. Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech (May 2027). Experience at Sandia National Labs, Metrical.al and DREU.">
 <meta property="og:title" content="Amin Weinman · Software Engineer & AI Researcher">
-<meta property="og:description" content="Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech ('27).">
+<meta property="og:description" content="Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech ('27). US work authorized; open to relocation and remote.">
 <meta property="og:type" content="website">
-<title>Amin Weinman · Arena</title>
+<meta property="og:url" content="https://amin9666.github.io/">
+<title>Amin Weinman · Software Engineer &amp; AI Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" href="assets/fonts/Clash-Bold.otf" as="font" type="font/otf" crossorigin>
 <link rel="stylesheet" href="styles.css">
-<script>try { if (sessionStorage.getItem("loaded")) document.documentElement.classList.add("seen"); } catch (e) {}</script>
+<link rel="stylesheet" href="standard.css">
+<script>
+(function (d) {
+  d.classList.add("js");
+  try {
+    var v = new URLSearchParams(location.search).get("view") || localStorage.getItem("view");
+    if (v === "standard") d.classList.add("std");
+    if (sessionStorage.getItem("loaded")) d.classList.add("seen");
+  } catch (e) {}
+})(document.documentElement);
+</script>
 </head>
 <body>
-<div class="loader" id="loader">
+
+<div class="standard" id="standard">
+  <header class="std-head">
+    <div class="std-wrap">
+      <div class="std-top">
+        <div>
+          <h1>Amin Weinman</h1>
+          <p class="std-title">Software Engineer &amp; AI Researcher</p>
+          <p class="std-hook">Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech, graduating May 2027.</p>
+        </div>
+        <button class="std-toggle" data-action="view-game" type="button">🎮 Game view</button>
+      </div>
+      <nav class="std-links" aria-label="Contact">
+        <a class="std-btn primary" href="mailto:aminweinman@gmail.com">Email me</a>
+        <a class="std-btn" href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+        <a class="std-btn" href="https://www.linkedin.com/in/amin-weinman" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="std-btn" href="https://github.com/Amin9666" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="std-wrap">
+    <section class="std-snapshot" aria-labelledby="snap-h">
+      <h2 id="snap-h">Hiring snapshot</h2>
+      <dl>
+        <div><dt>Looking for</dt><dd>SWE and ML/AI engineering internships, new-grad SWE roles, AI safety and ML research</dd></div>
+        <div><dt>Graduation</dt><dd>May 2027 · BS Computer Science, Minor in Mathematics · GPA 3.5</dd></div>
+        <div><dt>Location</dt><dd>New Mexico · open to relocation and remote</dd></div>
+        <div><dt>Work authorization</dt><dd>Authorized to work in the US · no sponsorship needed</dd></div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+      <article class="std-job">
+        <header><h3>Researcher, DREU in Agentic AI</h3><span class="std-date">May 2026 – Aug 2026</span></header>
+        <p class="std-org">Daytona Beach, FL</p>
+        <ul>
+          <li>Designed and evaluated a guarded, tool-using LLM agent (5 tools, 5-guardrail stack) for spacecraft anomaly triage; 8 configurations across 480 adversarial test cases.</li>
+          <li>Guardrail ablation study cut prompt-injection success from 100% to 0% and raised safe-behavior compliance from 22% to 100%.</li>
+          <li>Built an anomaly-detection pipeline (Isolation Forest, z-score baselines) over 142K+ telemetry rows; found and fixed an AUC evaluation bug (0.98 → 0.73).</li>
+        </ul>
+      </article>
+      <article class="std-job">
+        <header><h3>Undergraduate Researcher</h3><span class="std-date">Fall 2025 – Spring 2026</span></header>
+        <p class="std-org">New Mexico Tech · Dr. Omid Moradian</p>
+        <ul>
+          <li>Predicted lab-fault shear stress from 8,974 acoustic-emission events.</li>
+          <li>Benchmarked five modeling approaches; symbolic regression performed best on hold-out and 10-fold cross-validation.</li>
+          <li>Derived an interpretable 25-term formula from 45 physics-motivated features using LassoCV sparse selection.</li>
+        </ul>
+      </article>
+      <article class="std-job">
+        <header><h3>Software Engineer Intern</h3><span class="std-date">Jun 2025 – May 2026</span></header>
+        <p class="std-org">Metrical.al · San Francisco, CA</p>
+        <ul>
+          <li>Architected modular distributed systems, improving reliability by 40% for enterprise-scale applications.</li>
+          <li>Built a full-stack solution across CLI, REST API, and web interfaces with sub-50ms latency.</li>
+          <li>Built a promo-response model that improved checkout targeting by 0.135 AUC through feature engineering and model comparison.</li>
+        </ul>
+      </article>
+      <article class="std-job">
+        <header><h3>Undergraduate Researcher</h3><span class="std-date">Spring 2025</span></header>
+        <p class="std-org">New Mexico Tech · Dr. Ramyaa</p>
+        <ul>
+          <li>Trained and compared biased vs. balanced GPT-2 models summarizing Afghan War coverage.</li>
+          <li>Built a bias-metric visualization pipeline (political bias, gender bias, simplification of nuance) with pandas and seaborn.</li>
+          <li>Presented poster SRS 2025-102 at the NMT Student Research Symposium.</li>
+        </ul>
+      </article>
+      <article class="std-job">
+        <header><h3>Software Engineer Intern</h3><span class="std-date">May 2024 – May 2025</span></header>
+        <p class="std-org">Sandia National Labs · Albuquerque, NM</p>
+        <ul>
+          <li>Implemented high-performance messaging in distributed cloud infrastructure, cutting data-processing latency by 35%.</li>
+          <li>Developed Python algorithms with a 10x throughput improvement for high-volume data processing.</li>
+          <li>Built LLM API integrations used by 5+ development teams.</li>
+        </ul>
+      </article>
+      <article class="std-job">
+        <header><h3>Undergraduate Researcher, NASA MINDS Team</h3><span class="std-date">2023 – 2024</span></header>
+        <p class="std-org">New Mexico Tech · Dr. M. Hassanalian</p>
+        <ul>
+          <li>Helped design and test a nitinol shape-memory-alloy motor to improve Mars rover power generation.</li>
+          <li>Co-authored a peer-reviewed paper presented at AIAA Aviation Forum and ASCEND 2024.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="proj-h">
+      <h2 id="proj-h">Projects</h2>
+      <div class="std-projects">
+        <article><h3>Guarded Agentic Triage</h3><p>Tool-using LLM agent for spacecraft telemetry anomalies behind a 5-guardrail stack.</p><p class="std-result">Prompt-injection success 100% → 0%; presented at IEEE Quantum Week 2026.</p><p class="std-tags">Python · LLM agents · AI safety</p></article>
+        <article><h3>xPTS Shot Quality Model</h3><p>NBA expected-points model from shot distance, angle, game clock and pressure.</p><p class="std-result">Reproducible pipeline; GitHub Actions refreshes charts on every push.</p><p class="std-tags">Python · ML · GitHub Actions</p><a href="https://github.com/Amin9666" target="_blank" rel="noopener">View on GitHub →</a></article>
+        <article><h3>Premier League Predictor</h3><p>Dixon-Coles Poisson model with Monte Carlo simulation and a Qiskit QAE experiment.</p><p class="std-result">Backtested over 3 seasons against closing odds; 9 ideas A/B tested.</p><p class="std-tags">Python · Statistics · Qiskit</p><a href="https://github.com/Amin9666" target="_blank" rel="noopener">View on GitHub →</a></article>
+        <article><h3>Client Library Harness</h3><p>React/Vite SPA simulating a full e-commerce funnel to test tracking and offers.</p><p class="std-result">Replaced legacy jQuery pages; deployed to dev, stage and prod.</p><p class="std-tags">React · Vite</p></article>
+        <article><h3>Mars Rover Nitinol Motor</h3><p>Shape-memory-alloy motor for Mars rover power (NASA MINDS).</p><p class="std-result">Peer-reviewed paper at AIAA Aviation 2024.</p><p class="std-tags">Research · NASA</p><a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">Read the paper →</a></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <dl class="std-skills">
+        <div><dt>Languages</dt><dd>Python, C, JavaScript, SQL</dd></div>
+        <div><dt>Frameworks &amp; tools</dt><dd>React, Flask, PostgreSQL, Git, Docker, REST APIs, TensorFlow, scikit-learn, pandas, seaborn, Qiskit</dd></div>
+        <div><dt>Areas</dt><dd>Distributed systems, machine learning, AI safety, symbolic regression, algorithms, data structures</dd></div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="pub-h">
+      <h2 id="pub-h">Publications &amp; presentations</h2>
+      <ul class="std-pubs">
+        <li>Gatto, I., …, <b>Weinman, A.</b>, and Hassanalian, M., “Enhancing Mars Rover Power Generation With Nitinol Shape Memory Alloy Motors,” AIAA Aviation Forum and ASCEND 2024. <a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">doi.org/10.2514/6.2024-4888</a></li>
+        <li><b>Weinman, A.</b>, “Guarded Agentic Triage of Spacecraft Telemetry Anomalies,” presented through CRA at IEEE Quantum Week, 2026.</li>
+        <li><b>Weinman, A.</b> and Ramyaa, “AI Ethics and Biases,” Poster SRS 2025-102, New Mexico Tech Student Research Symposium, 2025.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="std-wrap std-foot">
+    <p>Contact: <a href="mailto:aminweinman@gmail.com">aminweinman@gmail.com</a></p>
+  </footer>
+</div>
+
+<div class="loader" id="loader" aria-hidden="true">
   <div class="loader-logo"><span>Amin</span><span>Weinman</span><small>Portfolio Arena</small></div>
   <div class="loader-bottom">
     <p class="loader-tip" id="loader-tip"></p>
@@ -25,19 +159,22 @@
     <small>Loading…</small>
   </div>
 </div>
+
 <div class="app">
   <header class="hud">
     <div class="player">
-      <div class="lvl-badge"><span id="hud-level"></span></div>
+      <div class="lvl-badge" aria-hidden="true"><span id="hud-level"></span></div>
       <div class="player-info">
-        <div class="player-name" id="hud-name"></div>
-        <div class="xp-bar"><div class="xp-fill" id="hud-xp"></div><span id="hud-xp-text"></span></div>
+        <div class="player-name" id="hud-name">Amin Weinman</div>
+        <div class="xp-bar" aria-hidden="true"><div class="xp-fill" id="hud-xp"></div><span id="hud-xp-text"></span></div>
       </div>
     </div>
     <div class="resources">
-      <button class="sound-btn" id="sound-btn" data-action="sound" aria-label="Toggle sound"></button>
-      <div class="res"><span class="res-icon">🪙</span><span id="hud-gold"></span></div>
-      <div class="res gems"><span class="res-icon">💎</span><span id="hud-gems"></span></div>
+      <button class="btn btn-yellow btn-xs" data-action="contact" type="button">✉️ Contact</button>
+      <button class="btn btn-blue btn-xs view-btn" data-action="view-standard" type="button" aria-label="Switch to standard résumé view" title="Standard résumé view">📄<span class="view-lbl"> Standard view</span></button>
+      <button class="sound-btn" id="sound-btn" data-action="sound" type="button" aria-label="Toggle sound"></button>
+      <div class="res"><span class="res-icon" aria-hidden="true">🪙</span><span class="sr">Gold:</span><span id="hud-gold"></span></div>
+      <div class="res gems"><span class="res-icon" aria-hidden="true">💎</span><span class="sr">Gems:</span><span id="hud-gems"></span></div>
     </div>
   </header>
 
@@ -46,46 +183,56 @@
 
       <section class="screen screen-shop" aria-label="Projects">
         <div class="shop-head">
-          <h2>Shop</h2>
-          <span class="timer">New deals in <b id="refresh-timer"></b></span>
+          <h2>Projects</h2>
+          <span class="timer">Problem → result, with links</span>
         </div>
         <div id="special-offer"></div>
-        <h3 class="section-title">Daily Deals</h3>
+        <h3 class="section-title">More Projects</h3>
         <div class="deals" id="deals"></div>
       </section>
 
       <section class="screen screen-deck" aria-label="Skills">
         <div class="panel">
-          <div class="panel-head"><h2>Battle Deck</h2><span class="hint">Tap a card</span></div>
+          <div class="panel-head"><h2>Core Skills</h2><span class="hint">Tap a card for details</span></div>
           <div class="card-grid" id="deck-grid"></div>
-          <div class="deck-foot"><span class="elixir static"><span>⌀</span></span>Average Elixir: <b id="avg-elixir"></b></div>
+          <div class="deck-foot"><span class="elixir static" aria-hidden="true"><span>⌀</span></span>Average Elixir: <b id="avg-elixir"></b></div>
         </div>
-        <h3 class="section-title">Card Collection</h3>
+        <h3 class="section-title">More Skills</h3>
         <p class="sub-count" id="collection-count"></p>
         <div class="card-grid" id="collection-grid"></div>
       </section>
 
       <section class="screen screen-home" aria-label="Home">
         <div class="home-main">
-        <div class="arena-top">
-          <span class="pill"><span>🏆</span><span id="trophy-count"></span></span>
-          <span class="pill"><span>📍</span><span id="location"></span></span>
-        </div>
-        <div class="arena home-arena" id="home-arena">
-          <div class="arena-name" id="arena-name"></div>
-          <div class="bubble" id="greeting"></div>
-        </div>
+          <div class="arena-top">
+            <span class="pill"><span aria-hidden="true">🏆</span><span class="sr">Trophies:</span><span id="trophy-count"></span></span>
+            <span class="pill"><span aria-hidden="true">📍</span><span class="sr">Location:</span><span id="location"></span></span>
+          </div>
+          <div class="arena home-arena" id="home-arena">
+            <div class="arena-name" id="arena-name"></div>
+            <div class="bubble" id="greeting"></div>
+          </div>
         </div>
 
         <div class="home-side">
-        <div class="hero">
-          <h1 id="hero-name"></h1>
-          <div class="title" id="hero-title"></div>
-          <p id="hero-tagline"></p>
-        </div>
-
-        <button class="btn btn-yellow btn-battle" data-action="battle">Battle<small>Let's work together</small></button>
-        <div class="quick-links" id="quick-links"></div>
+          <div class="hero">
+            <h1 id="hero-name">Amin Weinman</h1>
+            <div class="title" id="hero-title">Software Engineer · AI Researcher</div>
+            <p id="hero-tagline">Distributed systems, guarded AI agents, and ML research. CS + Math @ New Mexico Tech, graduating May 2027.</p>
+          </div>
+          <ul class="snapshot" aria-label="Hiring snapshot">
+            <li><span aria-hidden="true">🎯</span><b>Looking for</b>SWE, ML/AI &amp; research roles · internships &amp; new grad</li>
+            <li><span aria-hidden="true">🎓</span><b>Graduating</b>May 2027</li>
+            <li><span aria-hidden="true">📍</span><b>Location</b>New Mexico · relocate or remote</li>
+            <li><span aria-hidden="true">✅</span><b>Work auth</b>US authorized · no sponsorship</li>
+          </ul>
+          <button class="btn btn-yellow btn-battle" data-action="battle" type="button">Battle<small>Contact me</small></button>
+          <div class="quick-links" id="quick-links">
+            <a class="btn btn-blue btn-sm" href="resume.pdf" target="_blank" rel="noopener">📜 Résumé (PDF)</a>
+            <a class="btn btn-blue btn-sm" href="https://www.linkedin.com/in/amin-weinman" target="_blank" rel="noopener">💼 LinkedIn</a>
+            <a class="btn btn-blue btn-sm" href="https://github.com/Amin9666" target="_blank" rel="noopener">🐙 GitHub</a>
+            <a class="btn btn-blue btn-sm" href="mailto:aminweinman@gmail.com">✉️ Email</a>
+          </div>
         </div>
 
         <h3 class="section-title">Fun Fact Chests</h3>
@@ -95,19 +242,19 @@
       <section class="screen screen-clan" aria-label="About">
         <div class="clan-a">
           <div class="panel" id="clan-head"></div>
-          <h3 class="section-title members-title">Members</h3>
+          <h3 class="section-title members-title">Links</h3>
           <ol class="members" id="members"></ol>
         </div>
         <div class="clan-b">
-          <h3 class="section-title chat-title">Clan Chat</h3>
+          <h3 class="section-title chat-title">About Me</h3>
           <div class="chat" id="chat"></div>
         </div>
       </section>
 
-      <section class="screen screen-road" aria-label="Journey">
+      <section class="screen screen-road" aria-label="Experience">
         <div class="shop-head">
-          <h2>Trophy Road</h2>
-          <span class="timer">Career &amp; education</span>
+          <h2>Experience</h2>
+          <span class="timer">Trophy Road · newest first</span>
         </div>
         <div class="road" id="road"></div>
       </section>

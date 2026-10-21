@@ -1,7 +1,7 @@
 const PROFILE = {
   name: "Amin Weinman",
   title: "Software Engineer · AI Researcher",
-  tagline: "CS + Math @ New Mexico Tech ('27). I build fast distributed systems, guarded AI agents, and the occasional sports model.",
+  tagline: "Distributed systems, guarded AI agents, and ML research. CS + Math @ New Mexico Tech, graduating May 2027.",
   greeting: "Hey there!",
   emote: "assets/emotes/fingerheart.webp",
   level: 13,
@@ -37,13 +37,13 @@ const COLLECTION = [
 ];
 
 const PROJECTS = [
-  { name: "Guarded Agentic Triage", icon: "🛰️", art: "darkprince", featured: true, desc: "A tool-using LLM agent that triages anomalies in 142K+ rows of satellite telemetry, behind a 5-guardrail stack. Presented through CRA at IEEE Quantum Week 2026.", tags: ["Python", "LLM Agents", "AI Safety"], url: "", label: "IEEE Quantum Week 2026" },
-  { name: "xPTS Shot Quality", icon: "🏀", desc: "NBA expected-points model from shot distance, angle, clock and pressure, with auto-updating shot charts.", tags: ["Python", "ML", "GH Actions"], url: "https://github.com/Amin9666" },
-  { name: "Premier League Predictor", icon: "⚽", desc: "Dixon-Coles + Monte Carlo, backtested against closing odds, with a Qiskit QAE experiment.", tags: ["Python", "Stats", "Qiskit"], url: "https://github.com/Amin9666" },
-  { name: "Mars Rover Nitinol Motor", icon: "🔴", desc: "NASA MINDS shape-memory-alloy motor. Peer-reviewed paper at AIAA Aviation 2024.", tags: ["Research", "NASA"], url: "https://doi.org/10.2514/6.2024-4888" },
-  { name: "Client Library Harness", icon: "🛒", desc: "React/Vite SPA simulating a full e-commerce purchase funnel to test tracking and offers.", tags: ["React", "Vite"], url: "", label: "Internal" },
-  { name: "AI Bias in Summaries", icon: "⚖️", desc: "Biased vs. balanced GPT-2 summaries of Afghan War articles. Poster SRS 2025-102.", tags: ["GPT-2", "pandas"], url: "", label: "Poster" },
-  { name: "Fault Slip Physics + AI", icon: "🌋", desc: "Predicting lab-fault shear stress from 8,974 acoustic-emission events with symbolic regression.", tags: ["ML", "Physics"], url: "", label: "Research" },
+  { name: "Guarded Agentic Triage", icon: "🛰️", art: "darkprince", featured: true, desc: "Spacecraft telemetry anomalies need fast triage you can trust. Built a tool-using LLM agent over 142K+ telemetry rows behind a 5-guardrail stack.", result: "Prompt-injection success cut 100% → 0%; safe-behavior compliance 22% → 100% across 480 adversarial tests.", tags: ["Python", "LLM Agents", "AI Safety"], url: "", label: "IEEE Quantum Week 2026" },
+  { name: "xPTS Shot Quality", icon: "🏀", desc: "NBA expected-points model from shot distance, angle, clock and pressure.", result: "Reproducible pipeline; GitHub Actions refreshes charts and CSVs on every push.", tags: ["Python", "ML", "GH Actions"], url: "https://github.com/Amin9666", cta: "View on GitHub" },
+  { name: "Premier League Predictor", icon: "⚽", desc: "Dixon-Coles Poisson model + Monte Carlo, with a Qiskit amplitude-estimation experiment.", result: "Backtested over 3 seasons against closing odds; kept only gains that held up in A/B tests of 9 ideas.", tags: ["Python", "Stats", "Qiskit"], url: "https://github.com/Amin9666", cta: "View on GitHub" },
+  { name: "Client Library Harness", icon: "🛒", desc: "React/Vite SPA simulating a full e-commerce purchase funnel to test tracking and offers.", result: "Replaced legacy jQuery pages; deployed independently to dev, stage and prod.", tags: ["React", "Vite"], url: "", label: "Internal tool" },
+  { name: "Mars Rover Nitinol Motor", icon: "🔴", desc: "Shape-memory-alloy motor to improve Mars rover power (NASA MINDS).", result: "Peer-reviewed paper at AIAA Aviation & ASCEND 2024.", tags: ["Research", "NASA"], url: "https://doi.org/10.2514/6.2024-4888", cta: "Read the paper" },
+  { name: "AI Bias in Summaries", icon: "⚖️", desc: "Biased vs. balanced GPT-2 summarizers on Afghan War coverage.", result: "Bias-metric visualization pipeline; poster SRS 2025-102.", tags: ["GPT-2", "pandas"], url: "", label: "Poster" },
+  { name: "Fault Slip Physics + AI", icon: "🌋", desc: "Predicting lab-fault shear stress from 8,974 acoustic-emission events.", result: "Interpretable 25-term formula from 45 physics features via symbolic regression.", tags: ["ML", "Physics"], url: "", label: "Research" },
 ];
 
 const CHESTS = [
@@ -54,14 +54,14 @@ const CHESTS = [
 ];
 
 const ROAD = [
-  { trophies: 800, arena: "Arena 2 · Red Planet Lab", year: "2023 – 2024", title: "Undergraduate Researcher", org: "NASA MINDS Team · Dr. Hassanalian", desc: "Built and tested a nitinol shape-memory-alloy motor for Mars rover power. Co-authored a peer-reviewed paper at AIAA Aviation & ASCEND 2024." },
-  { trophies: 2000, arena: "Arena 5 · Sandia Stronghold", year: "May 2024 – May 2025", title: "Software Engineer Intern", org: "Sandia National Labs · Albuquerque", desc: "High-performance messaging in distributed cloud infrastructure (−35% latency), Python algorithms with 10x throughput, and LLM API integrations for 5+ teams." },
-  { trophies: 3000, arena: "Arena 7 · Bias Bastion", year: "Spring 2025", title: "Undergraduate Researcher", org: "New Mexico Tech · Dr. Ramyaa", desc: "Studied bias in AI summarization with biased vs. balanced GPT-2 models. Presented poster SRS 2025-102." },
-  { trophies: 4200, arena: "Arena 9 · Bay Area Bridge", year: "June 2025 – May 2026", title: "Software Engineer Intern", org: "Metrical.al · San Francisco", desc: "Distributed systems with +40% reliability, a CLI / REST / web stack at sub-50ms, and a promo-response model worth +0.135 AUC." },
-  { trophies: 5200, arena: "Arena 11 · Fault Line Fortress", year: "Fall 2025 – Spring 2026", title: "Undergraduate Researcher", org: "New Mexico Tech · Dr. Moradian", desc: "Predicted lab-fault shear stress from 8,974 acoustic-emission events and derived an interpretable 25-term formula with symbolic regression." },
-  { trophies: 6200, arena: "Arena 13 · Agentic AI Arena", year: "May 2026 – Aug 2026", title: "Researcher, DREU in Agentic AI", org: "Daytona Beach, FL", desc: "Guarded LLM agent for spacecraft telemetry triage: 8 configs × 480 adversarial cases, and caught an AUC bug (0.98 → 0.73). Presented at IEEE Quantum Week 2026." },
-  { trophies: 7000, arena: "Arena 14 · Graduation Gate", year: "May 2027", title: "BS Computer Science", org: "New Mexico Tech · Minor in Mathematics", desc: "GPA 3.5. Coursework in data structures, computer architecture, machine learning and statistics." },
-  { trophies: 7500, arena: "Arena 15 · ???", year: "Next", title: "Your team?", org: "", desc: "Looking for what's next after graduation. Hit Battle on the home screen to say hi." },
+  { trophies: 800, badge: "🚀", arena: "Arena 2 · Red Planet Lab", year: "2023 – 2024", title: "Undergraduate Researcher, NASA MINDS", org: "New Mexico Tech · Dr. M. Hassanalian", bullets: ["Helped design and test a nitinol shape-memory-alloy motor for Mars rover power", "Evaluated the prototype under simulated Martian conditions", "Co-authored a peer-reviewed paper at AIAA Aviation & ASCEND 2024"] },
+  { trophies: 2000, badge: "🏛️", arena: "Arena 5 · Sandia Stronghold", year: "May 2024 – May 2025", title: "Software Engineer Intern", org: "Sandia National Labs · Albuquerque, NM", bullets: ["Cut data-processing latency 35% with high-performance messaging in distributed cloud infrastructure", "10x throughput on high-volume data processing in Python", "Built LLM API integrations used by 5+ development teams"] },
+  { trophies: 3000, badge: "⚖️", arena: "Arena 7 · Bias Bastion", year: "Spring 2025", title: "Undergraduate Researcher", org: "New Mexico Tech · Dr. Ramyaa", bullets: ["Compared biased vs. balanced GPT-2 summarizers on Afghan War coverage", "Built a bias-metric visualization pipeline with pandas and seaborn", "Presented poster SRS 2025-102"] },
+  { trophies: 4200, badge: "📈", arena: "Arena 9 · Bay Area Bridge", year: "Jun 2025 – May 2026", title: "Software Engineer Intern", org: "Metrical.al · San Francisco, CA", bullets: ["Improved reliability 40% for enterprise-scale distributed systems", "Full-stack CLI / REST / web interfaces at sub-50ms latency", "Promo-response model: +0.135 AUC on checkout targeting"] },
+  { trophies: 5200, badge: "🌋", arena: "Arena 11 · Fault Line Fortress", year: "Fall 2025 – Spring 2026", title: "Undergraduate Researcher", org: "New Mexico Tech · Dr. Omid Moradian", bullets: ["Modeled lab-fault shear stress from 8,974 acoustic-emission events", "Benchmarked 5 model families; symbolic regression best on hold-out and 10-fold CV", "Derived an interpretable 25-term formula from 45 physics-motivated features"] },
+  { trophies: 6200, badge: "🛰️", arena: "Arena 13 · Agentic AI Arena", year: "May 2026 – Aug 2026", title: "Researcher, DREU in Agentic AI", org: "Daytona Beach, FL", bullets: ["Guarded, tool-using LLM agent for spacecraft anomaly triage (5 tools, 5 guardrails)", "Prompt-injection success 100% → 0% across 480 adversarial test cases", "Caught and fixed an AUC evaluation bug (0.98 → 0.73); presented at IEEE Quantum Week 2026"] },
+  { trophies: 7000, badge: "🎓", arena: "Arena 14 · Graduation Gate", year: "May 2027", title: "BS Computer Science, Minor in Mathematics", org: "New Mexico Tech · GPA 3.5", bullets: ["Coursework: data structures, computer architecture, machine learning, statistics"] },
+  { trophies: 7500, badge: "🤝", arena: "Arena 15 · ???", year: "Next", title: "Your team?", org: "", bullets: ["Open to SWE, ML/AI and research roles: internships and new grad", "US work authorized · open to relocation and remote"] },
 ];
 
 const CLAN = {
@@ -89,14 +89,14 @@ const TABS = [
   { id: "deck", label: "Skills", icon: "🃏" },
   { id: "battle", label: "Home", icon: "⚔️" },
   { id: "clan", label: "About", icon: "🛡️" },
-  { id: "road", label: "Journey", icon: "🏆" },
+  { id: "road", label: "Experience", icon: "🏆" },
 ];
 
 const LOADING_TIPS = [
   "Tip: Hit Battle on the home screen to get in touch.",
   "Tip: Open the chests for fun facts about Amin.",
   "Tip: Swipe left and right (or use arrow keys) to switch tabs.",
-  "Tip: The Trophy Road tab has the full work history.",
+  "Tip: The Experience tab has the full work history.",
   "Tip: Tap the speaker in the top bar for sound effects.",
 ];
 
@@ -187,7 +187,6 @@ function renderHome() {
   $("#hero-name").textContent = PROFILE.name;
   $("#hero-title").textContent = PROFILE.title;
   $("#hero-tagline").textContent = PROFILE.tagline;
-  $("#quick-links").innerHTML = ["Résumé", "LinkedIn", "GitHub", "Email"].map(n => LINKS.find(l => l.name === n)).map(l => `<a class="btn btn-blue btn-sm" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("");
   $("#chest-slots").innerHTML = CHESTS.map((c, i) => {
     const opened = state.opened.has(i);
     return `<button class="slot ${opened ? "opened" : "ready"}" data-chest="${i}" aria-label="${c.name}">
@@ -233,34 +232,26 @@ function renderDeck() {
 function renderShop() {
   const featured = PROJECTS.find(p => p.featured) || PROJECTS[0];
   const tags = p => `<span class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join("")}</span>`;
+  const result = p => `<span class="result"><b>Result:</b> ${p.result}</span>`;
   $("#special-offer").innerHTML = `<div class="offer">
-    <span class="ribbon">Special Offer</span>
-    <span class="value-badge">x10<br>value</span>
+    <span class="ribbon">Featured Project</span>
     <span class="offer-art ${featured.art ? "has-art" : ""}">${featured.art ? `<img src="assets/cards/${featured.art}.webp" alt="">` : featured.icon}</span>
-    <div><h3>${featured.name}</h3><p>${featured.desc}</p>${tags(featured)}</div>
+    <div><h3>${featured.name}</h3><p>${featured.desc}</p>${result(featured)}${tags(featured)}</div>
     ${featured.url
-      ? `<a class="btn btn-green" href="${featured.url}" target="_blank" rel="noopener">View Project</a>`
+      ? `<a class="btn btn-green" href="${featured.url}" target="_blank" rel="noopener">${featured.cta || "View Project"}</a>`
       : `<span class="btn btn-blue">${featured.label}</span>`}
   </div>`;
   $("#deals").innerHTML = PROJECTS.filter(p => p !== featured).map(p => {
-    const inner = `<span class="deal-art">${p.icon}</span>
+    const inner = `<span class="deal-art" aria-hidden="true">${p.icon}</span>
       <span class="deal-name">${p.name}</span>
       <span class="deal-desc">${p.desc}</span>
+      ${result(p)}
       ${tags(p)}
-      <span class="price ${p.url ? "" : "no-link"}">${p.url ? "FREE" : p.label}</span>`;
+      <span class="price ${p.url ? "" : "no-link"}">${p.url ? `${p.cta || "View"} →` : p.label}</span>`;
     return p.url
       ? `<a class="deal" href="${p.url}" target="_blank" rel="noopener">${inner}</a>`
       : `<div class="deal static">${inner}</div>`;
   }).join("");
-}
-
-function tickCountdown() {
-  const now = new Date();
-  const midnight = new Date(now);
-  midnight.setHours(24, 0, 0, 0);
-  const s = Math.floor((midnight - now) / 1000);
-  const pad = n => String(n).padStart(2, "0");
-  $("#refresh-timer").textContent = `${Math.floor(s / 3600)}h ${pad(Math.floor((s % 3600) / 60))}m ${pad(s % 60)}s`;
 }
 
 function renderClan() {
@@ -293,12 +284,12 @@ function renderRoad() {
     }
     html += `<div class="arena-divider ${reached ? "" : "locked"}">${reached ? "" : "🔒 "}${m.arena}</div>
     <div class="milestone ${reached ? "reached" : "locked"}">
-      <div class="node"><span>🏆</span>${fmt(m.trophies)}</div>
+      <div class="node" aria-hidden="true"><span>🏆</span>${fmt(m.trophies)}</div>
       <div class="m-card">
         <span class="m-year">${m.year}</span>
-        <h3>${m.title}</h3>
+        <h3><span class="m-badge" aria-hidden="true">${m.badge}</span>${m.title}</h3>
         ${m.org ? `<p class="m-org">${m.org}</p>` : ""}
-        <p>${m.desc}</p>
+        <ul class="m-bullets">${m.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
       </div>
     </div>`;
   }
@@ -460,27 +451,46 @@ function nextReward() {
   }
 }
 
-function startBattle() {
-  openModal("Battle", `<div class="matchmaking">
-    <div class="mm-swords">⚔️</div>
-    <p class="mm-text">Searching for opponent<span class="dots"></span></p>
-    <p class="mm-sub">Matching around ${fmt(PROFILE.trophies)} 🏆</p>
-  </div>`, "dark");
-  later(() => {
-    $("#modal-title").textContent = "Opponent Found!";
-    $("#modal-body").innerHTML = `<div class="versus">
-      <div class="vs-side blue"><div class="vs-avatar">🙂</div><b>You</b><small>Visitor</small></div>
-      <div class="vs">VS</div>
+function contactHTML() {
+  return `<div class="versus">
+      <div class="vs-side blue"><div class="vs-avatar" aria-hidden="true">🙂</div><b>You</b><small>Visitor</small></div>
+      <div class="vs" aria-hidden="true">VS</div>
       <div class="vs-side red"><div class="vs-avatar"><img src="${PROFILE.emote}" alt=""></div><b>${PROFILE.name}</b><small>${PROFILE.title}</small></div>
     </div>
     <p class="vs-msg">Best of one: loser has to email the other for a coffee chat.</p>
     <div class="contact-box"><span>${PROFILE.email}</span><button class="btn btn-blue btn-sm" data-copy="${PROFILE.email}">Copy</button></div>
     <div class="btn-row">
       <a class="btn btn-yellow" href="mailto:${PROFILE.email}">✉️ Email</a>
-      ${LINKS.filter(l => l.name !== "Email").slice(0, 3).map(l => `<a class="btn btn-blue" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("")}
+      ${LINKS.filter(l => l.name !== "Email").map(l => `<a class="btn btn-blue" href="${l.url}" target="_blank" rel="noopener">${l.icon} ${l.name}</a>`).join("")}
     </div>`;
+}
+
+function openContact() {
+  openModal("Contact", contactHTML(), "dark");
+}
+
+function startBattle() {
+  openModal("Battle", `<div class="matchmaking">
+    <div class="mm-swords" aria-hidden="true">⚔️</div>
+    <p class="mm-text">Searching for opponent<span class="dots"></span></p>
+    <p class="mm-sub">Matching around ${fmt(PROFILE.trophies)} 🏆</p>
+  </div>`, "dark");
+  later(() => {
+    $("#modal-title").textContent = "Opponent Found!";
+    $("#modal-body").innerHTML = contactHTML();
     Sfx.play("win");
   }, 1500);
+}
+
+function setView(view) {
+  const root = document.documentElement;
+  root.classList.toggle("std", view === "standard");
+  try { localStorage.setItem("view", view); } catch {}
+  const url = new URL(location.href);
+  url.searchParams.delete("view");
+  history.replaceState(null, "", url);
+  window.scrollTo(0, 0);
+  if (view === "game") setTab(state.tab);
 }
 
 function confetti(n = 70) {
@@ -520,6 +530,10 @@ function showHint() {
 
 function runLoader() {
   const el = $("#loader");
+  if (document.documentElement.classList.contains("std")) {
+    try { sessionStorage.setItem("loaded", "1"); } catch {}
+    return el?.remove();
+  }
   if (!el || document.documentElement.classList.contains("seen")) {
     el?.remove();
     return setTimeout(showHint, 600);
@@ -550,6 +564,9 @@ document.addEventListener("click", e => {
   else if ("upgrade" in d) upgradeCard(d.upgrade, t);
   else if ("copy" in d) navigator.clipboard?.writeText(d.copy).then(() => toast("Copied to clipboard!"), () => toast(d.copy));
   else if (d.action === "battle") startBattle();
+  else if (d.action === "contact") openContact();
+  else if (d.action === "view-standard") setView("standard");
+  else if (d.action === "view-game") setView("game");
   else if (d.action === "crack") crackChest();
   else if (d.action === "sound") {
     const muted = Sfx.toggle();
@@ -561,6 +578,7 @@ document.addEventListener("click", e => {
 
 document.addEventListener("keydown", e => {
   const modalOpen = !$("#modal").hidden;
+  if (document.documentElement.classList.contains("std") || e.target.closest("input, textarea")) return;
   if (e.key === "Escape" && modalOpen) closeModal();
   else if (!modalOpen && e.key === "ArrowRight") setTab(state.tab + 1);
   else if (!modalOpen && e.key === "ArrowLeft") setTab(state.tab - 1);
@@ -590,8 +608,6 @@ renderClan();
 renderRoad();
 renderTabbar();
 document.querySelectorAll(".screen").forEach(sc => sc.insertAdjacentHTML("beforeend", `<p class="disclaimer">This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy: <a href="https://www.supercell.com/fan-content-policy" target="_blank" rel="noopener">www.supercell.com/fan-content-policy</a>.</p>`));
-tickCountdown();
-setInterval(tickCountdown, 1000);
 runLoader();
 
 const fromHash = TABS.findIndex(t => `#${t.id}` === location.hash);
