@@ -120,11 +120,11 @@
     <section aria-labelledby="proj-h">
       <h2 id="proj-h">Projects</h2>
       <div class="std-projects">
-        <article><h3>Guarded Agentic Triage</h3><p>Tool-using LLM agent that triages spacecraft telemetry anomalies behind a 5-guardrail stack (DREU in Agentic AI).</p><p class="std-result">Prompt-injection success 100% → 0% across 480 adversarial test cases and 8 agent configurations.</p><p class="std-tags">Python · LLM agents · AI safety · presented at IEEE Quantum Week 2026</p></article>
+        <article><h3>Guarded Agentic Triage</h3><p>Tool-using LLM agent that triages spacecraft telemetry anomalies behind a 5-guardrail stack (DREU in Agentic AI).</p><p class="std-result">Prompt-injection success 100% → 0% across 480 adversarial test cases and 8 agent configurations.</p><p class="std-result">Presented through the Computing Research Association (CRA) at IEEE Quantum Week 2026.</p><p class="std-tags">Python · LLM agents · AI safety</p></article>
         <article><h3>xPTS Shot Quality Model</h3><p>NBA expected-points model from shot distance, angle, game clock and pressure.</p><p class="std-result">End-to-end reproducible pipeline; GitHub Actions refreshes charts and CSVs on every push.</p><p class="std-tags">Python · ML · GitHub Actions</p><a href="https://github.com/Amin9666/xPTS-Shot-Quality-Model" target="_blank" rel="noopener">View repo →</a></article>
         <article><h3>Premier League Predictor</h3><p>Dixon-Coles Poisson model with Monte Carlo simulation and a Qiskit quantum amplitude estimation experiment.</p><p class="std-result">Backtested over 3 seasons against closing betting odds; kept only gains that held up across 9 A/B-tested ideas.</p><p class="std-tags">Python · Statistics · Qiskit</p><a href="https://github.com/Amin9666/Premier_League_Prediction_26" target="_blank" rel="noopener">View repo →</a> · <a href="https://amin9666.github.io/Premier_League_Prediction_26/" target="_blank" rel="noopener">Live demo →</a></article>
         <article><h3>Fault Slip Physics + AI</h3><p>Predicting lab-fault shear stress from 8,974 acoustic-emission events.</p><p class="std-result">Interpretable 25-term formula from 45 physics-motivated features via symbolic regression.</p><p class="std-tags">Python · ML · Symbolic regression</p><a href="https://github.com/Amin9666/GeoResearch" target="_blank" rel="noopener">View repo →</a></article>
-        <article><h3>Client Library Harness</h3><p>React/Vite SPA simulating a full e-commerce funnel to test tracking and offers.</p><p class="std-result">Replaced legacy jQuery pages; deployed independently to dev, stage and prod.</p><p class="std-tags">React · Vite · internal tool</p></article>
+        <article><h3>Client Library Harness</h3><p>React/Vite SPA simulating a full e-commerce funnel to test tracking and offers.</p><p class="std-result">Replaced legacy jQuery pages; deployed independently to dev, stage and prod.</p><p class="std-tags">React · Vite</p><p class="std-note">Internal tool: the code is private and there is no public demo.</p></article>
         <article><h3>Mars Rover Nitinol Motor</h3><p>Shape-memory-alloy motor for Mars rover power (NASA MINDS).</p><p class="std-result">Peer-reviewed paper at AIAA Aviation &amp; ASCEND 2024.</p><p class="std-tags">Research · NASA</p><a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">Read the paper →</a></article>
       </div>
     </section>
@@ -142,7 +142,7 @@
       <h2 id="pub-h">Publications &amp; presentations</h2>
       <ul class="std-pubs">
         <li>Gatto, I., …, <b>Weinman, A.</b>, and Hassanalian, M., “Enhancing Mars Rover Power Generation With Nitinol Shape Memory Alloy Motors,” AIAA Aviation Forum and ASCEND 2024. <a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">doi.org/10.2514/6.2024-4888</a></li>
-        <li><b>Weinman, A.</b>, “Guarded Agentic Triage of Spacecraft Telemetry Anomalies,” DREU in Agentic AI (Computing Research Association), presented at IEEE Quantum Week, 2026.</li>
+        <li><b>Weinman, A.</b>, “Guarded Agentic Triage of Spacecraft Telemetry Anomalies,” DREU in Agentic AI, presented through the Computing Research Association (CRA) at IEEE Quantum Week, 2026.</li>
         <li><b>Weinman, A.</b> and Ramyaa, “AI Ethics and Biases,” Poster SRS 2025-102, New Mexico Tech Student Research Symposium, 2025.</li>
       </ul>
     </section>
@@ -158,11 +158,11 @@
   <div class="loader-bottom">
     <p class="loader-tip" id="loader-tip"></p>
     <div class="loader-bar"><i></i></div>
-    <small>Loading…</small>
   </div>
 </div>
 
 <div class="app">
+  <button class="recruiter-bar" data-action="view-standard" type="button">Recruiter? View the standard résumé →</button>
   <header class="hud">
     <div class="player">
       <div class="lvl-badge" aria-hidden="true"><span id="hud-level"></span></div>
@@ -217,7 +217,7 @@
 
         <div class="home-side">
           <div class="hero">
-            <h1 id="hero-name">Amin Weinman</h1>
+            <h2 class="hero-name" id="hero-name">Amin Weinman</h2>
             <div class="title" id="hero-title">Software Engineer · AI Researcher</div>
             <p id="hero-tagline">Distributed systems, guarded AI agents, and ML research. CS + Math @ New Mexico Tech, graduating May 2027.</p>
           </div>
@@ -278,7 +278,8 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script>(function (t) { t.after(t.content.cloneNode(true)); t.remove(); })(document.getElementById("game-tpl"));</script>
+<script>(function (t) { t.after(t.content.cloneNode(true)); t.remove(); })(document.getElementById("game-tpl"));
+setTimeout(function () { if (!window.gameReady) document.documentElement.classList.add("std"); }, 4000);</script>
 <script src="sfx.js"></script>
 <script src="arena.js"></script>
 <script src="script.js"></script>

@@ -88,3 +88,4 @@ html:not(.js) .std-toggle { display: none; }
   .std-head h1 { font-size: 1.8rem; }
   .std-snapshot dl, .std-projects { grid-template-columns: 1fr; }
 }
+.std-note { font-size: .85rem; color: var(--std-muted); font-style: italic; }
