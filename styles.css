@@ -1165,3 +1165,8 @@ h1 { -webkit-text-stroke-width: 8px; text-shadow: 0 5px 0 var(--ink); }
   .tab.active { flex: 1.25; }
   .tl { font-size: 10.5px; letter-spacing: 0; }
 }
+.std-link { margin: 14px 0 0; font-size: 13.5px; color: #cfe1ff; }
+.std-link button { padding: 0; border: 0; background: none; color: #fff; font: inherit; font-weight: 900; text-decoration: underline; cursor: pointer; }
+@media (min-width: 760px) { .home-side .std-link { text-align: left; } }
+@media (max-width: 759px) { .std-link { text-align: center; margin: -8px 0 18px; } }
+.offer span.btn { font-size: 15px; line-height: 1.2; }

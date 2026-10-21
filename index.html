@@ -36,12 +36,12 @@
         <div>
           <h1>Amin Weinman</h1>
           <p class="std-title">Software Engineer &amp; AI Researcher</p>
-          <p class="std-hook">Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech, graduating May 2027.</p>
+          <p class="std-hook">Distributed systems, guarded AI agents, and ML research. CS + Math at New Mexico Tech.</p>
         </div>
         <button class="std-toggle" data-action="view-game" type="button">🎮 Game view</button>
       </div>
       <nav class="std-links" aria-label="Contact">
-        <a class="std-btn primary" href="mailto:aminweinman@gmail.com">Email me</a>
+        <a class="std-btn primary" href="mailto:aminweinman@gmail.com">✉ aminweinman@gmail.com</a>
         <a class="std-btn" href="resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
         <a class="std-btn" href="https://www.linkedin.com/in/amin-weinman" target="_blank" rel="noopener">LinkedIn</a>
         <a class="std-btn" href="https://github.com/Amin9666" target="_blank" rel="noopener">GitHub</a>
@@ -67,8 +67,8 @@
         <p class="std-org">Daytona Beach, FL</p>
         <ul>
           <li>Designed and evaluated a guarded, tool-using LLM agent (5 tools, 5-guardrail stack) for spacecraft anomaly triage; 8 configurations across 480 adversarial test cases.</li>
-          <li>Guardrail ablation study cut prompt-injection success from 100% to 0% and raised safe-behavior compliance from 22% to 100%.</li>
-          <li>Built an anomaly-detection pipeline (Isolation Forest, z-score baselines) over 142K+ telemetry rows; found and fixed an AUC evaluation bug (0.98 → 0.73).</li>
+          <li>Guardrail ablation study (8 agent configurations × 480 adversarial test cases) cut prompt-injection success from 100% (no guardrails) to 0% (full stack) and raised safe-behavior compliance from 22% to 100%.</li>
+          <li>Built an anomaly-detection pipeline (Isolation Forest, z-score baselines) over 142K+ telemetry rows; found an evaluation bug that inflated AUC to 0.98 and corrected it to 0.73.</li>
         </ul>
       </article>
       <article class="std-job">
@@ -120,11 +120,12 @@
     <section aria-labelledby="proj-h">
       <h2 id="proj-h">Projects</h2>
       <div class="std-projects">
-        <article><h3>Guarded Agentic Triage</h3><p>Tool-using LLM agent for spacecraft telemetry anomalies behind a 5-guardrail stack.</p><p class="std-result">Prompt-injection success 100% → 0%; presented at IEEE Quantum Week 2026.</p><p class="std-tags">Python · LLM agents · AI safety</p></article>
-        <article><h3>xPTS Shot Quality Model</h3><p>NBA expected-points model from shot distance, angle, game clock and pressure.</p><p class="std-result">Reproducible pipeline; GitHub Actions refreshes charts on every push.</p><p class="std-tags">Python · ML · GitHub Actions</p><a href="https://github.com/Amin9666" target="_blank" rel="noopener">View on GitHub →</a></article>
-        <article><h3>Premier League Predictor</h3><p>Dixon-Coles Poisson model with Monte Carlo simulation and a Qiskit QAE experiment.</p><p class="std-result">Backtested over 3 seasons against closing odds; 9 ideas A/B tested.</p><p class="std-tags">Python · Statistics · Qiskit</p><a href="https://github.com/Amin9666" target="_blank" rel="noopener">View on GitHub →</a></article>
-        <article><h3>Client Library Harness</h3><p>React/Vite SPA simulating a full e-commerce funnel to test tracking and offers.</p><p class="std-result">Replaced legacy jQuery pages; deployed to dev, stage and prod.</p><p class="std-tags">React · Vite</p></article>
-        <article><h3>Mars Rover Nitinol Motor</h3><p>Shape-memory-alloy motor for Mars rover power (NASA MINDS).</p><p class="std-result">Peer-reviewed paper at AIAA Aviation 2024.</p><p class="std-tags">Research · NASA</p><a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">Read the paper →</a></article>
+        <article><h3>Guarded Agentic Triage</h3><p>Tool-using LLM agent that triages spacecraft telemetry anomalies behind a 5-guardrail stack (DREU research).</p><p class="std-result">Prompt-injection success 100% → 0% across 480 adversarial test cases and 8 agent configurations.</p><p class="std-tags">Python · LLM agents · AI safety · presented through the CRA DREU program at IEEE Quantum Week 2026</p></article>
+        <article><h3>xPTS Shot Quality Model</h3><p>NBA expected-points model from shot distance, angle, game clock and pressure.</p><p class="std-result">End-to-end reproducible pipeline; GitHub Actions refreshes charts and CSVs on every push.</p><p class="std-tags">Python · ML · GitHub Actions</p><a href="https://github.com/Amin9666/xPTS-Shot-Quality-Model" target="_blank" rel="noopener">View repo →</a></article>
+        <article><h3>Premier League Predictor</h3><p>Dixon-Coles Poisson model with Monte Carlo simulation and a Qiskit quantum amplitude estimation experiment.</p><p class="std-result">Backtested over 3 seasons against closing betting odds; kept only gains that held up across 9 A/B-tested ideas.</p><p class="std-tags">Python · Statistics · Qiskit</p><a href="https://github.com/Amin9666/Premier_League_Prediction_26" target="_blank" rel="noopener">View repo →</a> · <a href="https://amin9666.github.io/Premier_League_Prediction_26/" target="_blank" rel="noopener">Live demo →</a></article>
+        <article><h3>Fault Slip Physics + AI</h3><p>Predicting lab-fault shear stress from 8,974 acoustic-emission events.</p><p class="std-result">Interpretable 25-term formula from 45 physics-motivated features via symbolic regression.</p><p class="std-tags">Python · ML · Symbolic regression</p><a href="https://github.com/Amin9666/GeoResearch" target="_blank" rel="noopener">View repo →</a></article>
+        <article><h3>Client Library Harness</h3><p>React/Vite SPA simulating a full e-commerce funnel to test tracking and offers.</p><p class="std-result">Replaced legacy jQuery pages; deployed independently to dev, stage and prod.</p><p class="std-tags">React · Vite · internal tool</p></article>
+        <article><h3>Mars Rover Nitinol Motor</h3><p>Shape-memory-alloy motor for Mars rover power (NASA MINDS).</p><p class="std-result">Peer-reviewed paper at AIAA Aviation &amp; ASCEND 2024.</p><p class="std-tags">Research · NASA</p><a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">Read the paper →</a></article>
       </div>
     </section>
 
@@ -141,7 +142,7 @@
       <h2 id="pub-h">Publications &amp; presentations</h2>
       <ul class="std-pubs">
         <li>Gatto, I., …, <b>Weinman, A.</b>, and Hassanalian, M., “Enhancing Mars Rover Power Generation With Nitinol Shape Memory Alloy Motors,” AIAA Aviation Forum and ASCEND 2024. <a href="https://doi.org/10.2514/6.2024-4888" target="_blank" rel="noopener">doi.org/10.2514/6.2024-4888</a></li>
-        <li><b>Weinman, A.</b>, “Guarded Agentic Triage of Spacecraft Telemetry Anomalies,” presented through CRA at IEEE Quantum Week, 2026.</li>
+        <li><b>Weinman, A.</b>, “Guarded Agentic Triage of Spacecraft Telemetry Anomalies,” presented through the Computing Research Association (CRA) DREU program at IEEE Quantum Week, 2026.</li>
         <li><b>Weinman, A.</b> and Ramyaa, “AI Ethics and Biases,” Poster SRS 2025-102, New Mexico Tech Student Research Symposium, 2025.</li>
       </ul>
     </section>
@@ -151,6 +152,7 @@
   </footer>
 </div>
 
+<template id="game-tpl">
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader-logo"><span>Amin</span><span>Weinman</span><small>Portfolio Arena</small></div>
   <div class="loader-bottom">
@@ -184,20 +186,19 @@
       <section class="screen screen-shop" aria-label="Projects">
         <div class="shop-head">
           <h2>Projects</h2>
-          <span class="timer">Problem → result, with links</span>
         </div>
         <div id="special-offer"></div>
-        <h3 class="section-title">More Projects</h3>
+        <h3 class="section-title">Other Projects</h3>
         <div class="deals" id="deals"></div>
       </section>
 
       <section class="screen screen-deck" aria-label="Skills">
         <div class="panel">
-          <div class="panel-head"><h2>Core Skills</h2><span class="hint">Tap a card for details</span></div>
+          <div class="panel-head"><h2>Core Skills</h2></div>
           <div class="card-grid" id="deck-grid"></div>
           <div class="deck-foot"><span class="elixir static" aria-hidden="true"><span>⌀</span></span>Average Elixir: <b id="avg-elixir"></b></div>
         </div>
-        <h3 class="section-title">More Skills</h3>
+        <h3 class="section-title">Tools &amp; Frameworks</h3>
         <p class="sub-count" id="collection-count"></p>
         <div class="card-grid" id="collection-grid"></div>
       </section>
@@ -233,6 +234,7 @@
             <a class="btn btn-blue btn-sm" href="https://github.com/Amin9666" target="_blank" rel="noopener">🐙 GitHub</a>
             <a class="btn btn-blue btn-sm" href="mailto:aminweinman@gmail.com">✉️ Email</a>
           </div>
+          <p class="std-link">Prefer a plain résumé? <button type="button" data-action="view-standard">Switch to standard view →</button></p>
         </div>
 
         <h3 class="section-title">Fun Fact Chests</h3>
@@ -264,6 +266,7 @@
 
   <nav class="tabbar" id="tabbar" role="tablist"></nav>
 </div>
+</template>
 
 <div class="modal" id="modal" hidden>
   <div class="modal-backdrop" data-close></div>
@@ -275,6 +278,7 @@
 
 <div id="toast" role="status" aria-live="polite"></div>
 
+<script>(function (t) { t.after(t.content.cloneNode(true)); t.remove(); })(document.getElementById("game-tpl"));</script>
 <script src="sfx.js"></script>
 <script src="arena.js"></script>
 <script src="script.js"></script>
